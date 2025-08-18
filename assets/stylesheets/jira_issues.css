@@ -1,0 +1,28 @@
+/* JIRA Theme — Issue lists & details */
+
+.issue{
+  background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;
+  padding:20px!important;margin-bottom:16px!important;transition:all .2s ease
+}
+.issue:hover{box-shadow:var(--jira-shadow-md);border-color:var(--jira-primary)}
+.issue h3{color:var(--jira-text)!important;font-size:16px;font-weight:600;margin-bottom:8px}
+.issue h3 a{color:var(--jira-primary)!important;text-decoration:none!important}
+.issue h3 a:hover{text-decoration:underline!important}
+
+/* Badge helpers added by JS (.jl-badge & color classes) */
+.jl-badge{
+  padding:4px 8px;
+  border-radius:4px;
+  font-size:11px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:#fff
+}
+.jl-badge.jl-badge-blue{background:#0052cc}
+.jl-badge.jl-badge-yellow{background:#ffab00}
+.jl-badge.jl-badge-green{background:#36b37e}
+.jl-badge.jl-badge-red{background:#ff5630}
+
+
+.status{background:var(--jira-info);color:#fff}.priority{background:var(--jira-warning);color:#fff}.tracker{background:var(--jira-success);color:#fff}

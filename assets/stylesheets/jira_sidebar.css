@@ -1,0 +1,284 @@
+/* JIRA Theme — Sidebar + collapsed/offcanvas behavior */
+
+/* Main layout grid - override Redmine's default layout */
+#main,
+#main.collapsiblesidebar {
+  display: grid !important;
+  grid-template-columns: 260px 1fr !important;
+  gap: 20px !important;
+  align-items: flex-start !important;
+  transition: grid-template-columns 0.3s ease !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+#main.collapsedsidebar #sidebar-wrapper {
+  display: block !important;
+}
+/* No sidebar state */
+body.jl-no-sidebar #main {
+  grid-template-columns: 1fr !important;
+}
+
+/* Collapsed sidebar state - support both Redmine native and custom */
+.jl-sidebar-collapsed #main,
+#main.nosidebar {
+  grid-template-columns: 60px 1fr !important;
+}
+
+
+.jl-sidebar-toggle:hover {
+  background: var(--jira-hover, #f5f5f5) !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+}
+
+.jl-sidebar-toggle:active {
+  transform: scale(0.95) !important;
+}
+
+/* Hide native Redmine sidebar toggle when custom one exists */
+body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
+.jl-sidebar-toggle ~ * #sidebar-switch-panel {
+  display: none !important;
+}
+
+/* Alternative method to hide native toggle */
+#sidebar-switch-panel {
+  display: none !important;
+}
+
+/* Sidebar styling - ensure it stays in grid */
+#sidebar {
+  background: var(--jira-surface, #fff);
+  border: 1px solid var(--jira-border, #ddd);
+  border-radius: var(--jira-radius, 4px);
+  padding: 16px;
+  box-shadow: var(--jira-shadow-sm, 0 1px 3px rgba(0,0,0,0.1));
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  min-width: 200px;
+  width: 100% !important;
+  transition: all 0.3s ease;
+  grid-column: 1;
+  align-self: start;
+}
+
+/* Collapsed sidebar styling */
+.jl-sidebar-collapsed #sidebar {
+  width: 60px !important;
+  min-width: 60px !important;
+  padding: 12px 8px !important;
+  overflow: hidden;
+}
+
+/* Hide text in collapsed state */
+.jl-sidebar-collapsed #sidebar h3,
+.jl-sidebar-collapsed #sidebar .icon-label,
+.jl-sidebar-collapsed #sidebar a span:not(.icon-svg):not(svg) {
+  display: none !important;
+}
+
+/* Center icons in collapsed state */
+.jl-sidebar-collapsed #sidebar a {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  padding: 8px !important;
+  text-align: center !important;
+}
+
+.jl-sidebar-collapsed #sidebar a svg {
+  margin: 0 !important;
+}
+
+/* Sidebar content styling */
+#sidebar h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--jira-text, #333);
+  margin: 0 0 12px 0;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--jira-border, #ddd);
+}
+
+#sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#sidebar li {
+  margin: 4px 0;
+}
+
+#sidebar a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--jira-text-secondary, #666) !important;
+  text-decoration: none !important;
+  border-radius: var(--jira-radius, 4px);
+  transition: all 0.2s ease;
+  font-size: 13px;
+  word-wrap: break-word;
+}
+
+#sidebar a:hover {
+  background: var(--jira-hover, #f5f5f5);
+  color: var(--jira-text, #333) !important;
+}
+
+#sidebar a.selected {
+  background: var(--jira-primary-light, #e3f2fd);
+  color: var(--jira-primary, #1976d2) !important;
+}
+
+/* Content area - ensure it stays in grid */
+#content {
+  width: 100% !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  grid-column: 2;
+  overflow-x: auto;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+  body.jl-mobile #main {
+    grid-template-columns: 1fr !important;
+    gap: 0;
+  }
+  
+  body.jl-mobile #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    max-height: 100vh;
+    z-index: 2500;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    top: 0 !important;
+    padding-top: 60px;
+  }
+  
+  body.jl-mobile:not(.jl-sidebar-collapsed) #sidebar {
+    transform: translateX(0);
+  }
+  
+  .jl-mobile-dim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2400;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+  }
+
+  body.jl-mobile:not(.jl-sidebar-collapsed) .jl-mobile-dim {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Tablet responsive */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #main {
+    grid-template-columns: 220px 1fr;
+    gap: 15px;
+  }
+  
+  .jl-sidebar-collapsed #main {
+    grid-template-columns: 50px 1fr !important;
+  }
+  
+  #sidebar {
+    min-width: 180px;
+  }
+  
+  .jl-sidebar-collapsed #sidebar {
+    width: 50px !important;
+    min-width: 50px !important;
+  }
+}
+
+/* Desktop adjustments */
+@media (min-width: 1024px) {
+  #main {
+    grid-template-columns: 260px 1fr;
+  }
+  
+  .jl-sidebar-collapsed #main {
+    grid-template-columns: 60px 1fr !important;
+  }
+}
+
+/* Fix for filter panels and contextual menus */
+#query_form_with_buttons,
+.contextual {
+  width: auto;
+  max-width: none;
+}
+
+/* Ensure tables remain responsive */
+.autoscroll {
+  overflow-x: auto;
+}
+
+.jl-sidebar-collapsed .table-wrapper {
+  min-width: 600px;
+}
+
+/* Animation class support */
+#main.animate {
+  transition: grid-template-columns 0.3s ease;
+}
+
+/* Prevent any conflicts with existing Redmine styles */
+#main.collapsiblesidebar {
+  display: grid !important;
+}
+
+/* Override any conflicting Redmine sidebar positioning */
+#main.collapsiblesidebar #sidebar {
+  position: sticky !important;
+  left: auto !important;
+  right: auto !important;
+  float: none !important;
+}
+
+/* Hide login page toggle */
+body.action-login .jl-sidebar-toggle {
+  display: none !important;
+}
+
+.jl-sidebar-toggle {
+  position: absolute;
+  top: 50%;
+  left: -7px; /* sticks to sidebar edge */
+  transform: translateY(-50%);
+  width: 20px;
+  height: 40px;
+  background: var(--jira-primary, #2d2d2d);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 0 5px 5px 0;
+  font-size: 14px;
+  z-index: 1000;
+  transition: background 0.2s ease;
+}
+
+.jl-sidebar-toggle:hover {
+  background: var(--jira-primary-hover, #444);
+}

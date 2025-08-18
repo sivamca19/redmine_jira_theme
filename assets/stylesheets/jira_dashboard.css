@@ -1,0 +1,35 @@
+/* JIRA Theme — My Page & dashboard widgets */
+
+body.controller-my #main{display:block!important;padding:20px!important;max-width:1200px;margin:0 auto;width:100%}
+body.controller-my #content{width:100%}
+body.controller-my .contextual{margin-bottom:20px}
+
+/* Dashboard blocks */
+.mypage-box{
+  background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;
+  box-shadow:var(--jira-shadow-sm)!important;padding:20px!important;margin-bottom:20px!important
+}
+.mypage-box h3{color:var(--jira-text)!important;font-size:16px!important;font-weight:600!important;margin:0 0 16px 0!important;padding-bottom:8px!important;border-bottom:1px solid var(--jira-border)!important}
+
+/* Issue lists in my page */
+.issue-list,.issue-report{
+  background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;box-shadow:var(--jira-shadow-sm)!important;margin-bottom:20px!important
+}
+.issue-list h3,.issue-report h3{
+  background:var(--jira-surface-alt)!important;color:var(--jira-text)!important;font-size:14px!important;font-weight:600!important;
+  padding:12px 20px!important;margin:0!important;border-bottom:1px solid var(--jira-border)!important;border-radius:var(--jira-radius) var(--jira-radius) 0 0!important
+}
+
+/* Overview/Dashboard widgets */
+.issue-tracking{
+  background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;
+  padding:0!important;box-shadow:var(--jira-shadow-sm)!important;overflow:hidden
+}
+.issue-tracking h3{background:var(--jira-surface-alt)!important;color:var(--jira-text)!important;padding:12px 16px!important;margin:0!important;border-bottom:1px solid var(--jira-border)!important;font-size:14px!important;font-weight:600!important}
+.issue-tracking table{margin:0!important;border:none!important;box-shadow:none!important}
+
+.time-tracking{background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;padding:20px!important;box-shadow:var(--jira-shadow-sm)!important}
+.time-tracking h3{color:var(--jira-text)!important;font-size:16px!important;font-weight:600!important;margin:0 0 16px 0!important;padding-bottom:8px!important;border-bottom:1px solid var(--jira-border)!important}
+
+.members{background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;padding:20px!important;box-shadow:var(--jira-shadow-sm)!important}
+.members h3{color:var(--jira-text)!important;font-size:16px!important;font-weight:600!important;margin:0 0 16px 0!important;padding-bottom:8px!important;border-bottom:1px solid var(--jira-border)!important}

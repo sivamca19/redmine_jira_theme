@@ -1,0 +1,340 @@
+/* JIRA Theme — Header, top menus, breadcrumbs */
+
+#header{
+  position:sticky!important;top:0;z-index:1000;background:var(--jira-surface)!important;border-bottom:1px solid var(--jira-border);
+  box-shadow:var(--jira-shadow-sm);padding:0!important;width:100%!important;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Remove Redmine title */
+#header h1 {
+  display: none !important;
+}
+
+/* TOP MENU - Main container with search integration */
+#top-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 16px;
+  background: var(--jira-surface) !important;
+  border: none !important;
+  border-bottom: 1px solid var(--jira-border);
+  position: relative;
+}
+
+/* Left menu (Dashboard, Home, etc.) */
+#top-menu-left {
+  display: flex;
+  align-items: center;
+}
+
+#top-menu-left ul {
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+}
+
+#top-menu-left ul li a {
+  color: var(--jira-text)!important;
+  padding: 6px 12px!important;
+  border-radius: var(--jira-radius);
+  transition: background-color .2s ease;
+  text-decoration: none!important;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#top-menu-left ul li a:hover,
+#top-menu-left ul li a.selected {
+  background: var(--jira-hover)!important;
+  color: var(--jira-text)!important;
+}
+
+/* QUICK SEARCH: Position within top menu */
+#quick-search {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  right: 50px; /* Adjust based on right menu width */
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+#quick-search form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+}
+
+#quick-search label {
+  color: var(--jira-text);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#quick-search label a {
+  color: var(--jira-text) !important;
+  text-decoration: none !important;
+  font-size: 12px;
+}
+
+#quick-search input[type="text"] {
+  width: 140px;
+  padding: 4px 8px;
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  background: var(--jira-surface);
+  color: var(--jira-text);
+  font-size: 12px;
+}
+
+#quick-search input[type="text"]:focus {
+  outline: none;
+  border-color: var(--jira-primary);
+}
+
+/* Project jump dropdown */
+/* Wrapper */
+#project-jump.drdn .drdn-content {
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6);
+  color: var(--jira-text);
+  border-radius: 6px;
+  padding: 6px 0;
+}
+
+#project-jump .drdn-trigger {
+  padding: 0px 18px 3px 6px !important;
+}
+
+/* Search bar inside dropdown */
+#project-jump.drdn .quick-search {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+}
+#project-jump.drdn .quick-search input {
+  flex: 1;
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  color: var(--jira-text);
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+#project-jump.drdn .quick-search input:focus {
+  outline: none;
+  border-color: var(--jira-border);
+}
+
+/* Section headers (like "Recently used") */
+#project-jump.drdn .drdn-items strong {
+  display: block;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--jira-text) !important;
+  border-bottom: 1px solid var(--jira-border);
+  background: var(--jira-surface);
+}
+
+/* Links inside dropdown */
+#project-jump.drdn .drdn-items a {
+  display: block;
+  padding: 8px 12px;
+  color: var(--jira-text);
+  text-decoration: none;
+}
+#project-jump.drdn .drdn-items a:hover {
+  background: var(--jira-surface);
+  color: var(--jira-text);
+}
+
+/* All projects section */
+#project-jump.drdn .all-projects {
+  border-top: 1px solid var(--jira-border);
+}
+
+/* Right menu (Theme, account, logout, logged in) */
+#top-menu-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+#top-menu-right ul {
+  display: flex;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  align-items: center;
+}
+
+#top-menu-right ul li a {
+  color: var(--jira-text)!important;
+  padding: 6px 12px!important;
+  border-radius: var(--jira-radius);
+  transition: background-color .2s ease;
+  text-decoration: none!important;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+#top-menu-right ul li a:hover {
+  background: var(--jira-hover)!important;
+  color: var(--jira-text)!important;
+}
+
+/* Logged in as text */
+#loggedas {
+  color: var(--jira-text);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+#loggedas a {
+  color: var(--jira-primary) !important;
+  text-decoration: none !important;
+}
+
+/* Theme toggle */
+#jira-theme-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border: 1px solid var(--jira-border);
+  border-radius: 6px;
+  background: var(--jira-surface);
+  cursor: pointer;
+  font-size: 14px;
+  user-select: none;
+}
+
+#jira-theme-switch:hover,
+.jl-theme-toggle:hover {
+  background: var(--jira-hover);
+}
+
+/* Main Navigation - Keep your existing styles */
+#main-menu{
+  background:var(--jira-surface)!important;
+  border:none!important;
+  padding:0 16px!important;
+  overflow-x:auto;
+  overflow-y:hidden;
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid var(--jira-border);
+  padding: 8px 0!important;
+}
+
+#main-menu ul{
+  list-style:none;
+  display:flex;
+  gap:4px;
+  align-items:center;
+  min-width:max-content;
+  padding-bottom:2px;
+  margin: 0;
+  padding: 0 16px;
+}
+
+#main-menu a{
+  color:var(--jira-text)!important;
+  padding:10px 14px!important;
+  border-radius:var(--jira-radius);
+  transition:all .2s ease;
+  text-decoration:none!important;
+  font-weight:500;
+  font-size:14px;
+  white-space:nowrap;
+  display:block;
+}
+
+#main-menu a:hover,#main-menu a.selected{
+  background:var(--jira-hover)!important;
+  color:var(--jira-text)!important;
+}
+
+/* Breadcrumb - Keep your existing styles */
+.breadcrumb{
+  background:var(--jira-surface);
+  border:1px solid var(--jira-border);
+  border-radius:var(--jira-radius);
+  padding:8px 16px;
+  margin-bottom:20px;
+  font-size:13px;
+  overflow-x:auto;
+  white-space:nowrap
+}
+.breadcrumb a{color:var(--jira-primary)!important;text-decoration:none!important}
+.breadcrumb a:hover{text-decoration:underline!important}
+
+/* Mobile toggle button */
+.mobile-toggle-button {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  #quick-search {
+    right: 320px;
+  }
+}
+
+@media (max-width: 1024px) {
+  #quick-search {
+    right: 280px;
+  }
+  
+  #quick-search input[type="text"] {
+    width: 120px;
+  }
+  
+  #project-jump {
+    min-width: 140px;
+  }
+}
+
+@media (max-width: 768px) {
+  #quick-search {
+    position: static;
+    transform: none;
+    order: 2;
+    margin: 8px 0;
+    padding: 8px 16px;
+    border-top: 1px solid var(--jira-border);
+    width: 100%;
+    justify-content: center;
+  }
+  
+  #top-menu {
+    flex-wrap: wrap;
+  }
+  
+  #top-menu-left {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  
+  #top-menu-right {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,57 @@
+/* JIRA Theme — Forms, inputs, labels, buttons, contextual links */
+
+input,select,textarea{
+  width:100%;max-width:100%;padding:10px 12px;border:1px solid var(--jira-border);border-radius:var(--jira-radius);
+  background:var(--jira-surface)!important;color:var(--jira-text)!important;font-size:14px;transition:all .2s ease;font-family:inherit;box-sizing:border-box
+}
+input:focus,select:focus,textarea:focus{border-color:var(--jira-border-focus)!important;outline:none;box-shadow:0 0 0 3px rgba(76,154,255,.15)}
+input::placeholder,textarea::placeholder{color:var(--jira-text-muted)}
+label{color:var(--jira-text)!important;font-weight:500;font-size:13px;margin-bottom:6px;display:block}
+
+/* Buttons */
+.button,.buttons a,input[type=submit],.jl-btn,button,.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:8px 16px;
+  border-radius:var(--jira-radius);
+  border:1px solid var(--jira-border);
+  background:var(--jira-surface-alt);
+  color:var(--jira-text)!important;
+  cursor:pointer;
+  transition:all .2s ease;
+  font-size:14px;
+  font-weight:500;
+  text-decoration:none!important;
+  font-family:inherit;
+  white-space:nowrap;
+  min-height:36px;
+  box-sizing:border-box;
+  max-width: 150px;
+}
+.button:hover,.buttons a:hover,.jl-btn:hover,button:hover,.btn:hover{background:var(--jira-hover);border-color:var(--jira-border);transform:translateY(-1px);box-shadow:var(--jira-shadow-sm)}
+/* Primary */
+.button.primary,input[type=submit],.jl-btn.primary,.btn-primary{background:var(--jira-primary)!important;border-color:var(--jira-primary)!important;color:#fff!important}
+.button.primary:hover,input[type=submit]:hover,.jl-btn.primary:hover,.btn-primary:hover{background:var(--jira-primary-hover)!important;border-color:var(--jira-primary-hover)!important}
+
+/* Contextual actions (container in layout.css) */
+.contextual a,.contextual .button{
+  display:inline-flex;align-items:center;gap:6px;padding:6px 12px!important;border-radius:var(--jira-radius)!important;border:1px solid var(--jira-border)!important;
+  background:var(--jira-surface-alt)!important;color:var(--jira-text)!important;text-decoration:none!important;font-size:13px!important;font-weight:500!important;transition:all .2s ease;white-space:nowrap
+}
+.contextual a:hover,.contextual .button:hover{background:var(--jira-hover)!important;transform:translateY(-1px);box-shadow:var(--jira-shadow-sm)}
+
+/* Login forms */
+#login-form,#password-form{
+  max-width:400px;width:100%;padding:32px;background:var(--jira-surface);border:1px solid var(--jira-border);border-radius:12px;
+  box-shadow:var(--jira-shadow-lg);margin:0 auto;box-sizing:border-box
+}
+#login-form h2,#password-form h2{color:var(--jira-text)!important;text-align:center;margin-bottom:24px;font-size:24px;font-weight:600}
+#login-form .box,#password-form .box{background:transparent!important;border:none!important;padding:0!important;margin:0!important;box-shadow:none!important}
+#login-form p,#password-form p{margin-bottom:16px}
+#login-form input[type=submit],#password-form input[type=submit]{width:100%;padding:12px;margin-top:8px;font-size:16px;font-weight:600}
+
+/* Quick search */
+#quick-search{margin-right:16px}
+#quick-search input{width:200px;padding:6px 12px;border:1px solid var(--jira-border);border-radius:var(--jira-radius);background:var(--jira-surface);color:var(--jira-text)}

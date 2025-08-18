@@ -1,0 +1,30 @@
+/* JIRA Theme — Tables */
+
+.table-wrapper{overflow-x:auto;margin:16px 0;border-radius:var(--jira-radius)}
+
+table{
+  width:100%;border-collapse:separate;border-spacing:0;background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;
+  border-radius:var(--jira-radius)!important;overflow:hidden;box-shadow:var(--jira-shadow-sm);margin:16px 0;table-layout:auto;min-width:600px
+}
+table th{
+  background:var(--jira-surface-alt)!important;color:var(--jira-text)!important;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.5px;
+  padding:12px 16px!important;border-bottom:1px solid var(--jira-border)!important;border-right:1px solid var(--jira-border);text-align:left;white-space:nowrap
+}
+table th:last-child{border-right:none}
+table td{
+  padding:12px 16px!important;border-bottom:1px solid var(--jira-border)!important;border-right:1px solid var(--jira-border);
+  color:var(--jira-text)!important;font-size:13px;vertical-align:top;word-wrap:break-word
+}
+table td:last-child{border-right:none}
+table tr:hover{background:var(--jira-hover)!important}
+table tr:last-child td{border-bottom:none}
+
+/* Issue tables specifics */
+.issues table a{color:var(--jira-primary)!important;font-weight:500}
+.issues table a:hover{text-decoration:underline}
+
+/* Fix broken list headers in some views */
+table.list thead th, tr{
+  background:var(--jira-surface-alt)!important;color:var(--jira-text)!important;font-weight:600!important;font-size:12px!important;
+  text-transform:uppercase!important;letter-spacing:.5px!important;padding:12px 16px!important;border-bottom:1px solid var(--jira-border)!important;border-right:1px solid var(--jira-border)!important
+}

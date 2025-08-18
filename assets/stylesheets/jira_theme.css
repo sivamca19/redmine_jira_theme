@@ -1,0 +1,12 @@
+/* JIRA Theme — Main Import */
+@import "jira_core.css";
+@import "jira_layout.css";
+@import "jira_header.css";
+@import "jira_sidebar.css";
+@import "jira_tables.css";
+@import "jira_forms.css";
+@import "jira_issues.css";
+@import "jira_projects.css";
+@import "jira_dashboard.css";
+@import "jira_filters.css";
+@import "jira_mobile.css";

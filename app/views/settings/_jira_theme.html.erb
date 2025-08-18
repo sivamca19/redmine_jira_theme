@@ -1,0 +1,21 @@
+<% s = Setting.plugin_redmine_jira_theme %>
+<p>
+  <label>Default theme mode</label>
+  <%= select_tag 'settings[mode]',
+        options_for_select([['System', 'system'], ['Light', 'light'], ['Dark', 'dark']], s['mode']) %>
+</p>
+<p>
+  <label>Allow users to toggle theme</label>
+  <%= hidden_field_tag 'settings[allow_user_toggle]', '0' %>
+  <%= check_box_tag 'settings[allow_user_toggle]', '1', s['allow_user_toggle'] == '1' %>
+</p>
+<p>
+  <label>Compact spacing</label>
+  <%= hidden_field_tag 'settings[compact]', '0' %>
+  <%= check_box_tag 'settings[compact]', '1', s['compact'] == '1' %>
+</p>
+<p>
+  <label>Remember sidebar state</label>
+  <%= hidden_field_tag 'settings[remember_sidebar]', '0' %>
+  <%= check_box_tag 'settings[remember_sidebar]', '1', s['remember_sidebar'] == '1' %>
+</p>

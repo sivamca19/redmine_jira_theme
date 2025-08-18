@@ -1,0 +1,138 @@
+/* JIRA Theme — Core (variables, reset, typography, links) */
+
+/* ---------- CSS Variables (Light) ---------- */
+:root{
+  --jira-primary:#0052cc;
+  --jira-primary-hover:#0065ff;
+  --jira-bg:#f4f5f7;
+  --jira-surface:#fff;
+  --jira-surface-alt:#f7f8f9;
+  --jira-surface-raised:#fff;
+  --jira-hover:#ebecf0;
+  --jira-text:#172b4d;
+  --jira-text-secondary:#5e6c84;
+  --jira-text-muted:#6b778c;
+  --jira-border:#dfe1e6;
+  --jira-border-focus:#4c9aff;
+  --jira-radius:8px;
+  --jira-shadow-sm:0 1px 1px rgba(9,30,66,.08);
+  --jira-shadow-md:0 2px 4px rgba(9,30,66,.13);
+  --jira-shadow-lg:0 8px 16px rgba(9,30,66,.15);
+  --jira-success:#00875a;
+  --jira-warning:#ffab00;
+  --jira-error:#de350b;
+  --jira-info:#0065ff;
+  --jira-btn-text: #fff;
+}
+
+/* ---------- Dark Theme Variables ---------- */
+html[data-theme="dark"],body[data-theme="dark"],.theme-dark{
+  --jira-primary:#4c9aff;
+  --jira-primary-hover:#85b8ff;
+  --jira-bg:#0f1419;
+  --jira-surface:#1d2125;
+  --jira-surface-alt:#22272b;
+  --jira-surface-raised:#282e33;
+  --jira-hover:#2c333a;
+  --jira-text:#b3bac5;
+  --jira-text-secondary:#8c9bad;
+  --jira-text-muted:#6c7b7f;
+  --jira-border:#2c333a;
+  --jira-border-focus:#85b8ff;
+  --jira-shadow-sm:0 1px 1px rgba(0,0,0,.3);
+  --jira-shadow-md:0 2px 4px rgba(0,0,0,.4);
+  --jira-shadow-lg:0 8px 16px rgba(0,0,0,.5);
+  --jira-success:#00c896;
+  --jira-warning:#f5cd47;
+  --jira-error:#f87462;
+  --jira-info:#85b8ff;
+  --jira-btn-text: #fff;
+}
+
+/* ---------- Reset & Base ---------- */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",Ubuntu,system-ui,sans-serif;
+  font-size:14px;line-height:1.5;background:var(--jira-bg)!important;color:var(--jira-text)!important;height:100%;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+}
+
+/* Typography & text */
+h1,h2,h3,h4,h5,h6{color:var(--jira-text)!important;font-weight:600;line-height:1.3;margin-bottom:12px;word-wrap:break-word}
+h1{font-size:28px} h2{font-size:24px} h3{font-size:20px} h4{font-size:18px} h5{font-size:16px} h6{font-size:14px}
+p{color:var(--jira-text);line-height:1.6;margin-bottom:12px;word-wrap:break-word}
+
+/* Links */
+a{color:var(--jira-primary)!important;text-decoration:none!important;transition:all .2s ease}
+a:hover{color:var(--jira-primary-hover)!important;text-decoration:underline!important}
+
+/* Utilities */
+.text-center{text-align:center}.text-right{text-align:right}.text-left{text-align:left}
+.text-muted{color:var(--jira-text-muted)!important}.text-secondary{color:var(--jira-text-secondary)!important}
+.mt-1{margin-top:8px!important}.mt-2{margin-top:16px!important}.mt-3{margin-top:24px!important}
+.mb-1{margin-bottom:8px!important}.mb-2{margin-bottom:16px!important}.mb-3{margin-bottom:24px!important}
+.p-1{padding:8px!important}.p-2{padding:16px!important}.p-3{padding:24px!important}
+
+/* Clearfix helpers */
+.clearfix::after,#content::after{content:"";display:table;clear:both}
+
+
+
+/* ----------------------------
+   Fix menu links (e.g. News tab, Project links)
+----------------------------- */
+#main-menu a,
+#top-menu a,
+#account a,
+#projects-index a.project {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 6px 12px !important;
+  margin: 0 !important;
+  width: auto !important;
+  color: var(--jira-link) !important;
+  display: inline-block;
+}
+
+/* Hide redundant "Redmine" h1 between header and tabs */
+#header h1,
+#top-menu + h1,
+#main-menu + h1 {
+  display: none !important;
+}
+
+
+/* Theme & sidebar small UI controls */
+.theme-toggle,.jl-theme-toggle,.jl-sidebar-toggle{
+  z-index:1001;
+  padding:8px 12px;
+  border:1px solid var(--jira-border);
+  border-radius:var(--jira-radius);
+  background:var(--jira-surface);
+  color:var(--jira-text);
+  cursor:pointer;
+  transition:all .2s ease;
+  font-size:16px;
+  box-shadow:var(--jira-shadow-sm);
+}
+.theme-toggle:hover,.jl-theme-toggle:hover,.jl-sidebar-toggle:hover{background:var(--jira-hover);transform:translateY(-1px);box-shadow:var(--jira-shadow-md)}
+
+.block-receiver {
+  border: none !important;
+}
+
+div#activity h3 {
+  padding: 5px;
+  background-color: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  box-shadow: var(--jira-shadow-sm);
+}
+
+.settings {
+  background-color: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  box-shadow: var(--jira-shadow-sm);
+}

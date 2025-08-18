@@ -1,0 +1,159 @@
+/* JIRA Theme — Layout (wrapper, main, content, print) */
+
+#wrapper {
+  background: var(--jira-bg) !important;
+  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+#main {
+  display: block !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 20px !important;
+  background: var(--jira-bg) !important;
+  width: 100%;
+  min-height: calc(100vh - 200px);
+}
+
+#content {
+  background: var(--jira-bg) !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+/* Grid layout only when sidebar exists and has content */
+body:not(.nosidebar):not(.jl-no-sidebar) #main:has(#sidebar) {
+  display: grid !important;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+/* No-sidebar states */
+body.nosidebar #main,
+.nosidebar #main,
+body.jl-no-sidebar #main {
+  display: block !important;
+  grid-template-columns: none !important;
+  width: 100% !important;
+}
+body.nosidebar #sidebar,
+.nosidebar #sidebar,
+body.jl-no-sidebar #sidebar {
+  display: none !important;
+}
+
+/* Login & special pages */
+body.controller-account #main,
+body.action-login #main {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  padding: 40px 20px !important;
+}
+body.controller-account #sidebar,
+body.action-login #sidebar {
+  display: none !important;
+}
+body.controller-projects #main,
+body.controller-my #main {
+  display: block !important;
+  padding: 20px !important;
+  width: 100% !important;
+}
+
+/* Contextual actions alignment */
+.content-header,
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid var(--jira-border);
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.content-header h1,
+.page-header h1 {
+  color: var(--jira-text) !important;
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  margin: 0 !important;
+  flex: 1;
+  min-width: 200px;
+}
+.content-header .contextual,
+.page-header .contextual {
+  float: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* Contextual container (buttons styled in forms file) */
+.contextual {
+  float: right;
+  margin-bottom: 20px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  clear: both;
+}
+
+/* ======================
+   Footer fixes
+====================== */
+#footer {
+  background: var(--jira-bg) !important;
+  border-top: 1px solid var(--jira-border) !important;
+  color: var(--jira-text) !important;
+  padding: 12px 20px !important;
+  text-align: center;
+}
+#footer a {
+  color: var(--jira-link) !important;
+}
+#footer a:hover {
+  text-decoration: underline;
+}
+
+/* Print */
+@media print {
+  #header,
+  #sidebar,
+  #top-menu,
+  #main-menu,
+  .jl-sidebar-toggle,
+  .jl-theme-toggle {
+    display: none !important;
+  }
+  #main {
+    display: block !important;
+    padding: 0 !important;
+    grid-template-columns: none !important;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .box,
+  .panel,
+  table {
+    background: #fff !important;
+    border: 1px solid #ccc !important;
+    box-shadow: none !important;
+  }
+  .contextual {
+    display: none !important;
+  }
+}

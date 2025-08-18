@@ -1,0 +1,380 @@
+/* ========== QUERY FORM STYLES ========== */
+#query_form {
+  background: var(--jira-surface);
+  border-radius: var(--jira-radius);
+  margin: 0 20px 20px 20px;
+  box-shadow: var(--jira-shadow-sm);
+}
+
+#query_form_with_buttons {
+  padding: 0;
+}
+
+#query_form_content {
+  padding: 16px;
+}
+
+/* Filters Fieldset */
+#filters {
+  border: none;
+  margin-bottom: 20px;
+  padding: 0;
+  background: var(--jira-surface);
+  border-radius: var(--jira-radius);
+  overflow: hidden;
+}
+
+legend {
+  color: var(--jira-text) !important;
+}
+
+#filters legend, #options > legend {
+  background: var(--jira-primary);
+  color: var(--jira-btn-text) !important;
+  padding: 12px 16px;
+  margin: 0;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  transition: background 0.2s ease;
+  border: none;
+}
+
+#filters legend:hover {
+  background: var(--jira-primary-hover);
+}
+
+#filters legend .icon-svg, #options > legend .icon-svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+  fill: white;
+}
+
+#filters.collapsed legend .icon-svg {
+  transform: rotate(-90deg);
+}
+
+/* Filters Content - Fixed Container */
+#filters > div {
+  padding: 16px;
+  background: var(--jira-surface);
+  overflow: hidden;
+}
+
+/* Filters Table - Fixed Layout */
+#filters-table {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.filter {
+  display: grid;
+  grid-template-columns: minmax(150px, 200px) minmax(120px, 150px) 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  background: var(--jira-bg);
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  transition: border-color 0.2s ease;
+  width: 100%;
+  min-width: 0;
+}
+
+.filter:hover {
+  border-color: var(--jira-primary);
+}
+
+/* Filter Field */
+.filter .field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.filter .field input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--jira-primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.filter .field label {
+  font-weight: 500;
+  color: var(--jira-text);
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Filter Operator */
+.filter .operator select {
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-size: 13px;
+  color: var(--jira-text);
+  width: 100%;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.filter .operator select:focus {
+  border-color: var(--jira-border-focus);
+  box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.2);
+  outline: none;
+}
+
+/* Filter Values */
+.filter .values {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.filter .values span {
+  display: flex;
+}
+
+.filter .values select {
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-size: 13px;
+  color: var(--jira-text);
+  width: 100%;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.filter .values select:focus {
+  border-color: var(--jira-border-focus);
+  box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.2);
+  outline: none;
+}
+
+.filter .values select[disabled] {
+  background: var(--jira-surface-alt);
+  color: var(--jira-text-muted);
+  cursor: not-allowed;
+}
+
+/* Multi-select Toggle */
+.toggle-multiselect {
+  background: var(--jira-primary);
+  color: var(--jira-btn-text);
+  border: none;
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 10px;
+}
+
+.toggle-multiselect:hover {
+  background: var(--jira-primary-hover);
+}
+
+.toggle-multiselect .icon-svg {
+  width: 14px;
+  height: 14px;
+  fill: white;
+}
+
+/* Add Filter Section - Fixed Layout */
+.add-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--jira-surface-alt);
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.add-filter label {
+  font-weight: 600;
+  color: var(--jira-primary);
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.add-filter select {
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--jira-text);
+  min-width: 200px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.add-filter select:focus {
+  border-color: var(--jira-border-focus);
+  box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.2);
+  outline: none;
+}
+
+/* Calendar Navigation - Fixed Colors */
+.contextual.pagination.jl-fixed {
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  padding: 8px 16px;
+  margin: 0 20px 16px 20px;
+}
+
+.contextual.pagination.jl-fixed .pages {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contextual.pagination.jl-fixed .pages li a {
+  background: var(--jira-primary);
+  color: var(--jira-btn-text) !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.2s ease;
+}
+
+.contextual.pagination.jl-fixed .pages li a:hover {
+  background: var(--jira-primary-hover);
+}
+
+
+/* Month/Year Selector and Action Buttons - Fixed Colors */
+.buttons {
+  background: var(--jira-surface);
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+  padding: 16px;
+  margin: 0 20px 20px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+td.buttons, th.buttons, td.buttons a  {
+  background: none;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  display: inline !important; /* or revert to what it was originally */
+  gap: 0;
+  flex-wrap: unset;
+}
+
+table.list td.buttons {
+  border-top: none !important;
+}
+
+.buttons label {
+  font-weight: 600;
+  color: var(--jira-text-secondary);
+  margin-right: 8px;
+}
+
+.buttons select {
+  background: var(--jira-surface-alt);
+  border: 1px solid var(--jira-border);
+  border-radius: 4px;
+  padding: 3px 12px;
+  font-size: 14px;
+  color: var(--jira-text);
+  min-width: 120px;
+}
+
+.buttons select:focus {
+  border-color: var(--jira-border-focus);
+  box-shadow: 0 0 0 2px rgba(76, 154, 255, 0.2);
+  outline: none;
+}
+
+/* Action Buttons - Fixed Colors */
+.buttons .icon,
+.buttons a,
+.buttons input[type="submit"],
+.buttons button {
+  background: var(--jira-primary);
+  color: var(--jira-btn-text) !important;
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.buttons .icon:hover,
+.buttons a:hover,
+.buttons input[type="submit"]:hover,
+.buttons button:hover {
+  background: var(--jira-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--jira-shadow-sm);
+}
+
+.buttons .icon-reload {
+  background: var(--jira-text-muted);
+}
+
+.buttons .icon-reload:hover {
+  background: var(--jira-text-secondary);
+}
+
+.buttons .icon-save {
+  background: var(--jira-success);
+}
+
+.buttons .icon-save:hover {
+  background: #00a86b;
+}
+
+.buttons .icon-today {
+  background: var(--jira-warning) !important;
+}
+
+.buttons .icon-today:hover {
+  background: var(--jira-warning) !important;
+}
+
+.buttons a svg {
+  fill: var(--jira-btn-text) !important;
+}
