@@ -2,6 +2,15 @@
   'use strict';
   const JT = window.JiraTheme || {};
 
+  function updateResponsiveClasses() {
+    const body = document.body;
+    const width = window.innerWidth;
+
+    body.classList.toggle('jl-mobile', width < 768);
+    body.classList.toggle('jl-tablet', width >= 768 && width < 1024);
+    body.classList.toggle('jl-desktop', width >= 1024);
+  }
+
   function handleResponsive(){
     const w = window.innerWidth, sidebar = document.getElementById('sidebar'), html = document.documentElement;
     if (JT.hasSidebarContent() && w < JT.config.autoCollapseSidebarWidth && sidebar){
@@ -11,7 +20,7 @@
     } else if (html.classList.contains('jl-auto-collapsed')){
       html.classList.remove('jl-auto-collapsed','jl-sidebar-collapsed');
     }
-    JT.updateResponsiveClasses();
+    updateResponsiveClasses();
     JT.syncDimmer && JT.syncDimmer();
   }
 

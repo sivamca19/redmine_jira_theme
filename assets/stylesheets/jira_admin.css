@@ -1,0 +1,58 @@
+#permissions fieldset {
+  margin-bottom: 10px;
+}
+
+#permissions fieldset > legend, 
+fieldset#project_modules > legend, 
+#user_form fieldset > legend,
+#tracker_project_ids > legend,
+#tab-content-notifications fieldset > legend,
+#tab-content-repositories fieldset > legend,
+#auth_source_form fieldset > legend,
+#wiki_form fieldset > legend,
+#tab-content-authentication fieldset > legend,
+#tab-content-projects fieldset > legend,
+.controller-groups fieldset > legend,
+#settings fieldset > legend,
+#tab-content-users fieldset > legend,
+#tab-content-issues fieldset > legend,
+#tab-content-timelog fieldset > legend {
+  background: var(--jira-primary);
+  color: var(--jira-btn-text) !important;
+  padding: 12px 16px;
+  margin: 0;
+  border-radius: 0;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  transition: background 0.2s ease;
+  border: none;
+}
+
+#permissions fieldset label {
+  margin: 0 10px;
+}
+
+input, select, textarea {
+  width: auto !important;
+}
+
+#permissions fieldset > legend svg {
+  fill: var(--jira-btn-text) !important;
+}
+
+#new-attachments {
+  padding: 30px
+}
+
+#new-attachments span.add_attachment {
+  color: var(--jira-btn-text) !important;
+}
+
+.controller-groups fieldset {
+  padding: 10px;
+}

@@ -11,7 +11,7 @@
   display: block !important;
   max-width: none !important;
   margin: 0 !important;
-  padding: 20px !important;
+  /* padding: 20px !important; */
   background: var(--jira-bg) !important;
   width: 100%;
   min-height: calc(100vh - 200px);
@@ -20,7 +20,6 @@
 #content {
   background: var(--jira-bg) !important;
   border: none !important;
-  padding: 0 !important;
   margin: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
@@ -156,4 +155,15 @@ body.controller-my #main {
   .contextual {
     display: none !important;
   }
+}
+
+.status-column, .droppable-area, .kpi, .dashboard-card {
+  background-color: var(--jira-surface) !important;
+}
+.status-header h3 {
+  color: var(--jira-btn-text) !important;
+}
+
+.controller-timelog #query_form label {
+  display: inline !important;
 }

@@ -1,18 +1,17 @@
-# lib/jira_theme/hooks.rb
 module JiraTheme
   class Hooks < Redmine::Hook::ViewListener
     
     COMPONENT_MAPPING = {
       core: {
-        css: ['jira_core', 'jira_layout', 'jira_header', 'jira_filters', 'jira_tables'],
-        js: ['jira_core', 'jira_theme']
+        css: ['jira_core', 'jira_layout', 'jira_header', 'jira_filters', 'jira_tables', 'jira_logo', 'jira_admin'],
+        js: ['jira_core', 'jira_theme', 'jira_logo']
       },
       issues: {
-        css: ['jira_issues', 'jira_tables'],
+        css: ['jira_issues', 'jira_tables', 'jira_forms'],
         js: ['jira_tables', 'jira_forms']
       },
       projects: {
-        css: ['jira_projects', 'jira_tables'],
+        css: ['jira_projects', 'jira_tables', 'jira_forms'],
         js: ['jira_tables']
       },
       my: {
@@ -31,9 +30,6 @@ module JiraTheme
         css: ['jira_calendar'],
         js: ['jira_calendar', 'jira_filters']
       },
-      gantt: {
-        css: ['jira_gantt']
-      },
       sidebar: {
         css: ['jira_sidebar'],
         js: ['jira_sidebar']
@@ -41,6 +37,9 @@ module JiraTheme
       mobile: {
         css: ['jira_mobile'],
         js: ['jira_responsive', 'jira_keyboard']
+      },
+      others: {
+        css: ['jira_forms']
       }
     }.freeze
     
@@ -71,6 +70,14 @@ module JiraTheme
       
       # Theme detection script
       output << content_tag(:script, raw(theme_detection_script), type: 'text/javascript')
+
+      logo_white_tag = image_tag('logo-white.png', plugin: 'redmine_jira_theme', alt: 'Company Logo', id: 'plugin-white-logo', style: 'display:none;')
+      logo_black_tag = image_tag('logo-black.png', plugin: 'redmine_jira_theme', alt: 'Company Logo', id: 'plugin-dark-logo', style: 'display:none;')
+
+      output << content_tag(:script, <<~JS.html_safe, type: 'text/javascript')
+        window.PLUGIN_WHITE_LOGO_HTML = `#{logo_white_tag}`;
+        window.PLUGIN_BLACK_LOGO_HTML = `#{logo_black_tag}`;
+      JS
       
       output.join("\n").html_safe
     end
@@ -126,8 +133,8 @@ module JiraTheme
         files.concat(COMPONENT_MAPPING[:admin][:css])
       when 'account'
         files.concat(COMPONENT_MAPPING[:account][:css])
-      when 'gantts'
-        files.concat(COMPONENT_MAPPING[:gantt][:css])
+      else
+        files.concat(COMPONENT_MAPPING[:others][:css])
       end
       
       files.concat(COMPONENT_MAPPING[:sidebar][:css])

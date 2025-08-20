@@ -23,6 +23,7 @@
   --jira-error:#de350b;
   --jira-info:#0065ff;
   --jira-btn-text: #fff;
+  --jira-tab-hover: #f5cd47;
 }
 
 /* ---------- Dark Theme Variables ---------- */
@@ -47,6 +48,7 @@ html[data-theme="dark"],body[data-theme="dark"],.theme-dark{
   --jira-error:#f87462;
   --jira-info:#85b8ff;
   --jira-btn-text: #fff;
+  --jira-tab-hover: #f5cd47;
 }
 
 /* ---------- Reset & Base ---------- */
@@ -64,7 +66,7 @@ p{color:var(--jira-text);line-height:1.6;margin-bottom:12px;word-wrap:break-word
 
 /* Links */
 a{color:var(--jira-primary)!important;text-decoration:none!important;transition:all .2s ease}
-a:hover{color:var(--jira-primary-hover)!important;text-decoration:underline!important}
+a:hover{color:var(--jira-primary-hover)!important;}
 
 /* Utilities */
 .text-center{text-align:center}.text-right{text-align:right}.text-left{text-align:left}
@@ -75,7 +77,6 @@ a:hover{color:var(--jira-primary-hover)!important;text-decoration:underline!impo
 
 /* Clearfix helpers */
 .clearfix::after,#content::after{content:"";display:table;clear:both}
-
 
 
 /* ----------------------------
@@ -102,22 +103,6 @@ a:hover{color:var(--jira-primary-hover)!important;text-decoration:underline!impo
   display: none !important;
 }
 
-
-/* Theme & sidebar small UI controls */
-.theme-toggle,.jl-theme-toggle,.jl-sidebar-toggle{
-  z-index:1001;
-  padding:8px 12px;
-  border:1px solid var(--jira-border);
-  border-radius:var(--jira-radius);
-  background:var(--jira-surface);
-  color:var(--jira-text);
-  cursor:pointer;
-  transition:all .2s ease;
-  font-size:16px;
-  box-shadow:var(--jira-shadow-sm);
-}
-.theme-toggle:hover,.jl-theme-toggle:hover,.jl-sidebar-toggle:hover{background:var(--jira-hover);transform:translateY(-1px);box-shadow:var(--jira-shadow-md)}
-
 .block-receiver {
   border: none !important;
 }
@@ -130,9 +115,38 @@ div#activity h3 {
   box-shadow: var(--jira-shadow-sm);
 }
 
-.settings {
+#content .box, #preview_settings_welcome_text {
   background-color: var(--jira-surface);
   border: 1px solid var(--jira-border);
   border-radius: var(--jira-radius);
+  box-shadow: var(--jira-shadow-sm)
+}
+
+#content .tabs ul li a.selected {
+  background-color: var(--jira-success);
+  color: var(--jira-btn-text) !important;
+  border-color: var(--jira-success);
   box-shadow: var(--jira-shadow-sm);
+}
+
+#content .tabs ul li a:hover {
+  background-color: var(--jira-tab-hover) !important;
+}
+.jstElements button {
+  min-height: auto !important;
+  border-radius: unset !important;
+}
+
+table .context-menu-selection{
+  background-color: var(--jira-success) !important;
+  color: var(--jira-btn-text) !important;
+}
+
+table .context-menu-selection:hover {
+  background-color: var(--jira-success) !important;
+  color: var(--jira-btn-text) !important;
+}
+
+.pagination ul.pages li {
+  border: 1px solid var(--jira-border) !important;
 }

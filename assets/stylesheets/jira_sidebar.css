@@ -28,8 +28,7 @@ body.jl-no-sidebar #main {
 
 
 .jl-sidebar-toggle:hover {
-  background: var(--jira-hover, #f5f5f5) !important;
-  transform: scale(1.05) !important;
+  background: var(--jira-text-secondary) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
 }
 
@@ -41,6 +40,16 @@ body.jl-no-sidebar #main {
 body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
 .jl-sidebar-toggle ~ * #sidebar-switch-panel {
   display: none !important;
+}
+
+/* Content area - ensure it stays in grid */
+#content {
+  /* width: 100% !important;
+  min-height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important; */
+  grid-column: 2;
+  /* overflow-x: auto; */
 }
 
 /* Alternative method to hide native toggle */
@@ -135,16 +144,6 @@ body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
   color: var(--jira-primary, #1976d2) !important;
 }
 
-/* Content area - ensure it stays in grid */
-#content {
-  width: 100% !important;
-  min-height: auto !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  grid-column: 2;
-  overflow-x: auto;
-}
-
 /* Mobile responsive */
 @media (max-width: 767px) {
   body.jl-mobile #main {
@@ -170,7 +169,7 @@ body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
     transform: translateX(0);
   }
   
-  .jl-mobile-dim {
+  /* .jl-mobile-dim {
     position: fixed;
     top: 0;
     left: 0;
@@ -181,7 +180,7 @@ body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
-  }
+  } */
 
   body.jl-mobile:not(.jl-sidebar-collapsed) .jl-mobile-dim {
     opacity: 1;
@@ -279,6 +278,12 @@ body.action-login .jl-sidebar-toggle {
   transition: background 0.2s ease;
 }
 
-.jl-sidebar-toggle:hover {
-  background: var(--jira-primary-hover, #444);
+#sidebar-wrapper a {
+  display: inline-block !important;
+}
+
+#sidebar-wrapper label {
+  display: inline-block !important;
+  margin-bottom: 0;
+  margin-left: 0;
 }

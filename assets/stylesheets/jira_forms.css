@@ -1,12 +1,31 @@
 /* JIRA Theme — Forms, inputs, labels, buttons, contextual links */
 
 input,select,textarea{
-  width:100%;max-width:100%;padding:10px 12px;border:1px solid var(--jira-border);border-radius:var(--jira-radius);
-  background:var(--jira-surface)!important;color:var(--jira-text)!important;font-size:14px;transition:all .2s ease;font-family:inherit;box-sizing:border-box
+  width:100%;
+  max-width:100%;
+  padding:3px 12px;
+  border:1px solid var(--jira-border);
+  border-radius:var(--jira-radius);
+  background:var(--jira-surface)!important;
+  color:var(--jira-text)!important;
+  font-size:14px;
+  transition:all .2s ease;
+  font-family:inherit;
+  box-sizing:border-box;
 }
 input:focus,select:focus,textarea:focus{border-color:var(--jira-border-focus)!important;outline:none;box-shadow:0 0 0 3px rgba(76,154,255,.15)}
 input::placeholder,textarea::placeholder{color:var(--jira-text-muted)}
-label{color:var(--jira-text)!important;font-weight:500;font-size:13px;margin-bottom:6px;display:block}
+label{
+  color:var(--jira-text)!important;
+  font-weight:500;
+  font-size:13px;
+  margin-bottom:6px;
+  display:block;
+  margin-left: 12px;
+}
+label input[type="checkbox"] {
+  margin-right: 6px; /* adjust spacing as needed */
+}
 
 /* Buttons */
 .button,.buttons a,input[type=submit],.jl-btn,button,.btn{
@@ -28,7 +47,7 @@ label{color:var(--jira-text)!important;font-weight:500;font-size:13px;margin-bot
   white-space:nowrap;
   min-height:36px;
   box-sizing:border-box;
-  max-width: 150px;
+  max-width: 181px;
 }
 .button:hover,.buttons a:hover,.jl-btn:hover,button:hover,.btn:hover{background:var(--jira-hover);border-color:var(--jira-border);transform:translateY(-1px);box-shadow:var(--jira-shadow-sm)}
 /* Primary */

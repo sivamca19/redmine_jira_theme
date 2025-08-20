@@ -1,0 +1,86 @@
+#custom-logo-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 16px 20px;
+  background: var(--jira-surface);
+  position: relative;
+  min-height: 60px;
+  box-shadow: 0 2px 4px var(--jira-shadow-sm);
+}
+
+/* Logo styling */
+#custom-logo-section .logo-web {
+  display: none;
+  height: 45px;
+  width: auto;
+  max-width: 220px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+
+.jiralike-light #plugin-logo-web-dark{
+  display: block;
+}
+
+.jiralike-dark #plugin-logo-web-light{
+  display: block;
+}
+
+#custom-logo-section .logo-mobile {
+  display: none;
+  height: 38px;
+  width: auto;
+  max-width: 160px;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+}
+
+/* Logo hover effects */
+#custom-logo-section img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* Header layout adjustments */
+#header {
+  background: transparent;
+  position: relative;
+}
+#main-menu {
+  margin-left: 171px !important;
+}
+
+.logo-web {
+  display: block;
+}
+
+.logo-mobile {
+  display: none;
+  max-height: 40px;
+}
+
+@media (max-width: 768px) {
+  .logo-web {
+    display: none !important;
+  }
+  .jiralike-light #plugin-logo-mobile-dark{
+    display: block !important;
+  }
+
+  .jiralike-dark #plugin-logo-mobile-light{
+    display: block !important;
+  }
+  #custom-logo-section {
+    display: inline-block !important;
+    z-index: 999;
+  }
+  #quick-search {
+    display: none !important;
+  }
+  #custom-logo-section {
+    padding: 10px 20px !important;
+  }
+}

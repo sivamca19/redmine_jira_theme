@@ -1,12 +1,15 @@
 /* JIRA Theme — Mobile responsiveness & small-screen tweaks */
 
 @media (max-width:1200px){
-  #main:has(#sidebar){grid-template-columns:240px 1fr!important;gap:16px!important;padding:16px!important}
+  #main:has(#sidebar){
+    grid-template-columns:240px 1fr!important;
+    gap:16px!important;
+  }
   .projects{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))!important}
 }
 
 @media (max-width:1024px){
-  body:not(.nosidebar):not(.jl-no-sidebar) #main:has(#sidebar){display:block!important;padding:16px!important}
+  body:not(.nosidebar):not(.jl-no-sidebar) #main:has(#sidebar){display:block!important;}
   #sidebar{position:static!important;max-height:none!important;margin-bottom:20px!important;width:100%!important}
   .contextual{float:none!important;justify-content:flex-start;margin-bottom:16px}
   .projects{grid-template-columns:1fr!important}
@@ -18,7 +21,6 @@
 /* True off-canvas sidebar for handhelds */
 @media (max-width:768px){
   body{font-size:13px}
-  #main{padding:12px!important}
   body.controller-projects #main,body.controller-my #main{padding:12px!important;max-width:none!important}
 
   /* Off-canvas behavior */
@@ -29,9 +31,9 @@
   html:not(.jl-sidebar-collapsed) body:not(.nosidebar):not(.jl-no-sidebar) #sidebar{ transform:translateX(0) }
 
   /* Optional dimmer (inserted by JS) */
-  .jl-mobile-dim{
+  /* .jl-mobile-dim{
     position:fixed; inset:0; background:rgba(0,0,0,.35); z-index:1001; opacity:0; pointer-events:none; transition:opacity .2s ease
-  }
+  } */
   html:not(.jl-sidebar-collapsed) .jl-mobile-dim{opacity:1; pointer-events:auto}
 
   /* General tweaks */
@@ -50,7 +52,6 @@
 
 @media (max-width:480px){
   body{font-size:12px}
-  #main{padding:8px!important}
   h1{font-size:20px} h2{font-size:18px} h3{font-size:16px}
   .box,.panel{padding:12px!important}
   #login-form,#password-form{padding:20px;margin:16px}
@@ -80,4 +81,39 @@
 /* Empty states */
 .nodata{
   background:var(--jira-surface);border:1px solid var(--jira-border);border-radius:var(--jira-radius);padding:40px 20px;text-align:center;color:var(--jira-text-muted);font-style:italic;margin:20px 0
+}
+
+@media screen and (max-width: 899px) {
+  #header {
+    width: 100% !important;
+    height: 64px !important;
+    min-height: 0 !important;
+    margin: 0;
+    padding: 0 !important;
+    border: none;
+    background-color: var(--jira-surface) !important;
+    box-shadow: var(--jira-shadow-sm);
+    position: fixed !important;
+    z-index: 9999;
+    display: inline !important;
+  }
+
+  .mobile-toggle-button {
+    border-left: 1px solid var(--jira-border) !important;
+  }
+
+  .flyout-menu {
+    background-color: var(--jira-surface) !important;
+  }
+
+  .flyout-menu h3 {
+    color: var(--jira-text) !important;
+    border-top: 1px solid var(--jira-border) !important;
+    border-bottom: 1px solid var(--jira-border) !important;
+    background-color: var(--jira-surface) !important;
+  }
+  #project-jump .drdn-trigger {
+    color: var(--jira-text) !important;
+    background-color: var(--jira-surface) !important;
+  }
 }

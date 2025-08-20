@@ -12,23 +12,52 @@
     });
   }
 
-  function addStatusBadges(){
-    const sels = ['td.status','.issue .status','.issue-status','.status','.priority','.tracker'];
-    document.querySelectorAll(sels.join(', ')).forEach(el=>{
-      if (el.classList.contains('jl-badge')) return;
-      const text = (el.innerText || el.textContent || '').trim().toLowerCase();
-      el.classList.add('jl-badge');
-      if (/new|open|todo|assigned/.test(text)) el.classList.add('jl-badge-blue');
-      else if (/in progress|doing|started/.test(text)) el.classList.add('jl-badge-yellow');
-      else if (/resolved|done|closed|completed/.test(text)) el.classList.add('jl-badge-green');
-      else if (/blocked|rejected|cancelled|failed/.test(text)) el.classList.add('jl-badge-red');
+  function addStatusBadges() {
+    // Only select <td> elements with class "status", "priority", or "tracker"
+    const sels = ['td.status', 'td.priority', 'td.tracker'];
 
-      if (/low|minor/.test(text)) el.classList.add('jl-badge-blue');
-      else if (/normal|medium/.test(text)) el.classList.add('jl-badge-yellow');
-      else if (/high|major/.test(text)) el.classList.add('jl-badge-red');
-      else if (/urgent|critical|blocker/.test(text)){ el.classList.add('jl-badge-red'); el.style.background='#de350b'; }
+    document.querySelectorAll(sels.join(', ')).forEach(el => {
+      // Avoid re-wrapping if already processed
+      if (el.querySelector('.jl-badge')) return;
+
+      const text = (el.innerText || el.textContent || '').trim();
+      const lowerText = text.toLowerCase();
+
+      // Create span wrapper
+      const span = document.createElement('span');
+      span.classList.add('jl-badge');
+      span.textContent = text;
+
+      // Status-based classes
+      if (/new|open|todo|assigned/.test(lowerText)) {
+        span.classList.add('jl-badge-blue');
+      } else if (/pending|doing|started|support/.test(lowerText)) {
+        span.classList.add('jl-badge-yellow');
+      } else if (/resolved|done|closed|completed/.test(lowerText)) {
+        span.classList.add('jl-badge-green');
+      } else if (/blocked|rejected|cancelled|failed|bug/.test(lowerText)) {
+        span.classList.add('jl-badge-red');
+      }
+
+      // Priority-based classes
+      if (/low|minor/.test(lowerText)) {
+        span.classList.add('jl-badge-blue');
+      } else if (/normal|medium/.test(lowerText)) {
+        span.classList.add('jl-badge-yellow');
+      } else if (/high|major/.test(lowerText)) {
+        span.classList.add('jl-badge-red');
+      } else if (/urgent|critical|blocker/.test(lowerText)) {
+        span.classList.add('jl-badge-red');
+        span.style.background = '#de350b';
+      }
+
+      // Replace element content with span
+      el.textContent = '';
+      el.appendChild(span);
     });
   }
+
+
 
   /* -------------------------
      Theme handling
