@@ -2,3 +2,4 @@ en:
   jira_theme:
     name: "Jira Theme"
     description: "Jira Theme"
+    label_enabled: "Enabled"

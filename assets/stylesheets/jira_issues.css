@@ -29,3 +29,15 @@
 .jl-badge.jl-badge-green{background:#36b37e}
 .jl-badge.jl-badge-red{background:#ff5630}
 
+#history .tab-content {
+  padding: 10px 27px !important;
+}
+
+#content .tabs {
+  margin-bottom: 0 !important;
+}
+
+body.controller-issues .table-wrapper, table {
+  margin: 0 5px !important;
+  min-width: 100px !important;
+}

@@ -150,3 +150,12 @@ table .context-menu-selection:hover {
 .pagination ul.pages li {
   border: 1px solid var(--jira-border) !important;
 }
+
+#project-jump .drdn-trigger {
+  background: var(--jira-surface) url(/assets/arrow_down-5626a7fa.png) no-repeat 97% 50% !important;
+  border: 1px solid var(--jira-border);
+}
+
+#quick-search #q {
+  border: 1px solid var(--jira-border);
+}

@@ -1,6 +1,9 @@
 /* JIRA Theme — Tables */
 
-.table-wrapper{overflow-x:auto;margin:16px 0;border-radius:var(--jira-radius)}
+.table-wrapper{
+  margin:16px 0;
+  border-radius:var(--jira-radius)
+}
 
 table{
   width:100%;border-collapse:separate;border-spacing:0;background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;

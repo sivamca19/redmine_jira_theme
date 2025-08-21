@@ -15,7 +15,7 @@ module JiraTheme
         js: ['jira_tables']
       },
       my: {
-        css: ['jira_dashboard', 'jira_tables'],
+        css: ['jira_dashboard', 'jira_tables', 'jira_forms'],
         js: ['jira_tables']
       },
       admin: {
@@ -23,8 +23,8 @@ module JiraTheme
         js: ['jira_forms', 'jira_tables']
       },
       account: {
-        css: ['jira_forms'],
-        js: ['jira_forms']
+        css: ['jira_forms', 'jira_login'],
+        js: ['jira_forms', 'jira_login']
       },
       calendar: {
         css: ['jira_calendar'],
@@ -90,7 +90,9 @@ module JiraTheme
     private
     
     def jira_theme_enabled?
-      defined?(Setting) && Setting.respond_to?(:plugin_redmine_jira_theme)
+      defined?(Setting) &&
+      Setting.respond_to?(:plugin_redmine_jira_theme) &&
+      Setting.plugin_redmine_jira_theme['enabled'] == '1'
     end
     
     def get_controller(context)
@@ -115,7 +117,6 @@ module JiraTheme
     
     def get_css_files_for_page(controller, action)
       files = COMPONENT_MAPPING[:core][:css].dup
-      
       case controller.to_s
       when 'issues'   
         files.concat(COMPONENT_MAPPING[:issues][:css])
@@ -170,18 +171,27 @@ module JiraTheme
     end
     
     def theme_detection_script
+      mode_setting = Setting.plugin_redmine_jira_theme['mode'] || 'system'
+      allow_user_toggle = Setting.plugin_redmine_jira_theme['allow_user_toggle'] == '1'
       <<~JS
         (function() {
           try {
-            const savedTheme = localStorage.getItem('jiralike-theme') || 'system';
-            const systemTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            const theme = savedTheme === 'system' ? systemTheme : savedTheme;
+            window.ALLOWUSERTOGGLETHEME = #{allow_user_toggle};
+            const pluginMode = '#{mode_setting}';
+            function resolveTheme(mode) {
+              localStorage.setItem('jiralike-theme', mode);
+              if (mode === 'system') {
+                return window.matchMedia &&
+                  window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+              }
+              return mode;
+            }
 
+            const theme = resolveTheme(pluginMode);
             document.documentElement.setAttribute('data-theme', theme);
-
             function applyBodyClasses() {
               if (!document.body) return; // wait until body exists
-
+              document.body.classList.remove('jiralike-light','jiralike-dark');
               document.body.classList.add('jiralike', 'jiralike-' + theme);
 
               const isMobile = window.innerWidth < 768;

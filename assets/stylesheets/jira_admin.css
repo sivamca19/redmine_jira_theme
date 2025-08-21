@@ -14,6 +14,7 @@ fieldset#project_modules > legend,
 #tab-content-projects fieldset > legend,
 .controller-groups fieldset > legend,
 #settings fieldset > legend,
+#my_account_form fieldset > legend,
 #tab-content-users fieldset > legend,
 #tab-content-issues fieldset > legend,
 #tab-content-timelog fieldset > legend {
@@ -55,4 +56,42 @@ input, select, textarea {
 
 .controller-groups fieldset {
   padding: 10px;
+}
+
+.dashboard-container {
+  background: var(--jira-surface)!important;
+}
+
+.dashboard-header {
+  background: var(--jira-surface-alt)!important;
+}
+.widget {
+  background: var(--jira-surface-alt)!important;
+}
+
+.export-dropdown-btn {
+  color: var(--jira-primary) !important;
+  background: var(--jira-surface)!important;
+  border: 1px solid var(--jira-border)!important;
+  border-radius: var(--jira-radius)!important;
+}
+
+.export-dropdown-content {
+  background: var(--jira-surface)!important;
+  border: 1px solid var(--jira-border)!important;
+  border-radius: var(--jira-radius)!important;
+}
+
+#content .export-dropdown-item {
+  color: var(--jira-primary)!important;
+}
+
+#content .export-dropdown-item:hover {
+  background-color: var(--jira-surface-alt)!important;
+  color: var(--jira-text) !important;
+}
+
+#project-selector-form .project-select {
+  background-color: var(--jira-surface)!important;
+  border: 1px solid var(--jira-border)!important;
 }

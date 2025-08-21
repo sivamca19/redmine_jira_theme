@@ -213,7 +213,7 @@
       addStatusBadges();
       JT.enhanceFilters && JT.enhanceFilters();
       JT.enhanceTables && JT.enhanceTables();
-
+      if(window.ALLOWUSERTOGGLETHEME && window.ALLOWUSERTOGGLETHEME === true)
       injectThemeToggle();
       fixTopMenuLayout()
 

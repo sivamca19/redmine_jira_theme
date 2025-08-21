@@ -61,16 +61,39 @@ label input[type="checkbox"] {
 }
 .contextual a:hover,.contextual .button:hover{background:var(--jira-hover)!important;transform:translateY(-1px);box-shadow:var(--jira-shadow-sm)}
 
-/* Login forms */
-#login-form,#password-form{
-  max-width:400px;width:100%;padding:32px;background:var(--jira-surface);border:1px solid var(--jira-border);border-radius:12px;
-  box-shadow:var(--jira-shadow-lg);margin:0 auto;box-sizing:border-box
-}
-#login-form h2,#password-form h2{color:var(--jira-text)!important;text-align:center;margin-bottom:24px;font-size:24px;font-weight:600}
-#login-form .box,#password-form .box{background:transparent!important;border:none!important;padding:0!important;margin:0!important;box-shadow:none!important}
-#login-form p,#password-form p{margin-bottom:16px}
-#login-form input[type=submit],#password-form input[type=submit]{width:100%;padding:12px;margin-top:8px;font-size:16px;font-weight:600}
-
 /* Quick search */
 #quick-search{margin-right:16px}
 #quick-search input{width:200px;padding:6px 12px;border:1px solid var(--jira-border);border-radius:var(--jira-radius);background:var(--jira-surface);color:var(--jira-text)}
+
+#my_account_form label {
+  display: inline-block !important;
+}
+
+div.modal {
+  background-color: var(--jira-surface);
+}
+
+.ui-widget.ui-widget-content {
+  border: 1px solid var(--jira-border);
+  border-radius: var(--jira-radius);
+}
+.ui-widget-header {
+  border: 1px solid var(--jira-border);
+  background-color: var(--jira-surface-alt);
+  color: var(--jira-text)
+}
+.ui-button {
+  border: 1px solid var(--jira-surface-alt);
+  background-color: var(--jira-surface-alt);
+  color: var(--jira-text)
+}
+
+.ui-button:hover {
+  border: 1px solid var(--jira-surface-alt);
+  background-color: var(--jira-surface-alt);
+  color: var(--jira-text)
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  margin: -19px 0px 0px 0px;
+}
