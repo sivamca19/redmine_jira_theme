@@ -22,6 +22,7 @@
   border: none !important;
   border-bottom: 1px solid var(--jira-border);
   position: relative;
+  height: auto !important;
 }
 
 /* Left menu (Dashboard, Home, etc.) */

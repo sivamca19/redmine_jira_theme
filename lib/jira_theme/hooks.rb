@@ -70,14 +70,22 @@ module JiraTheme
       
       # Theme detection script
       output << content_tag(:script, raw(theme_detection_script), type: 'text/javascript')
-
-      logo_white_tag = image_tag('logo-white.png', plugin: 'redmine_jira_theme', alt: 'Company Logo', id: 'plugin-white-logo', style: 'display:none;')
-      logo_black_tag = image_tag('logo-black.png', plugin: 'redmine_jira_theme', alt: 'Company Logo', id: 'plugin-dark-logo', style: 'display:none;')
+      # Logo handling - use custom logos if available, otherwise fallback to defaults
+      logo_white_tag = get_logo_html('dark')
+      logo_black_tag = get_logo_html('light')
 
       output << content_tag(:script, <<~JS.html_safe, type: 'text/javascript')
         window.PLUGIN_WHITE_LOGO_HTML = `#{logo_white_tag}`;
         window.PLUGIN_BLACK_LOGO_HTML = `#{logo_black_tag}`;
       JS
+
+      # logo_white_tag = image_tag('logo-white.png', plugin: 'redmine_jira_theme', alt: 'Company Logo', id: 'plugin-white-logo', style: 'display:none;')
+      # logo_black_tag = image_tag('logo-black.png', plugin: 'redmine_jira_theme', alt: 'Company Logo', id: 'plugin-dark-logo', style: 'display:none;')
+
+      # output << content_tag(:script, <<~JS.html_safe, type: 'text/javascript')
+      #   window.PLUGIN_WHITE_LOGO_HTML = `#{logo_white_tag}`;
+      #   window.PLUGIN_BLACK_LOGO_HTML = `#{logo_black_tag}`;
+      # JS
       
       output.join("\n").html_safe
     end
@@ -245,6 +253,22 @@ module JiraTheme
           }
         });
       JS
+    end
+
+    def get_logo_html(theme_type)
+      options = {}
+      options[:id] = theme_type == 'light' ? 'plugin-black-logo' : 'plugin-white-logo'
+      if Setting.plugin_redmine_jira_theme["logo_#{theme_type}"].present?
+       url = Setting.plugin_redmine_jira_theme["logo_#{theme_type}"]
+      else
+        url = theme_type == 'light' ? 'logo-black.png' : 'logo-white.png'
+        options[:plugin]='redmine_jira_theme'
+      end
+      build_image_html(url, options)
+    end
+
+    def build_image_html(image_url, options = {})
+      image_tag(image_url,options.merge!({alt: 'Company Logo', style: 'display:none;'}))
     end
   end
 end

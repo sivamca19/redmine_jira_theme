@@ -19,8 +19,6 @@ h2 {
   background: var(--jira-surface);
 }
 
-
-        /* Calendar Grid - Fixed Background */
 .cal {
   display: grid;
   grid-template-columns: 60px repeat(7, 1fr);
@@ -42,7 +40,7 @@ h2 {
   font-weight: 600;
   color: var(--jira-text-secondary) !important;
   text-align: center;
-  border-bottom: 2px solid var(--jira-primary) !important;
+  border-bottom: 2px solid var(--jira-border) !important;
 }
 
 .calhead.week-number {
@@ -151,7 +149,7 @@ h2 {
 }
 
 .issue:hover {
-  border-color: var(--jira-primary) !important;
+  border-color: var(--jira-border) !important;
   box-shadow: var(--jira-shadow-sm) !important;
   transform: translateY(-1px);
   text-decoration: none;
@@ -320,4 +318,8 @@ h2 {
 [style*="display:none"], [style*="display: none"] {
   display: none !important;
 }
-    
+
+.context-menu-selection {
+  background-color: var(--jira-primary) !important;
+  color: var(--jira-btn-text) !important;
+}

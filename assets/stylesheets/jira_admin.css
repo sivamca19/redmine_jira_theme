@@ -14,6 +14,8 @@ fieldset#project_modules > legend,
 #tab-content-projects fieldset > legend,
 .controller-groups fieldset > legend,
 #settings fieldset > legend,
+#issue-form fieldset > legend,
+.controller-imports fieldset > legend,
 #my_account_form fieldset > legend,
 #tab-content-users fieldset > legend,
 #tab-content-issues fieldset > legend,
@@ -94,4 +96,52 @@ input, select, textarea {
 #project-selector-form .project-select {
   background-color: var(--jira-surface)!important;
   border: 1px solid var(--jira-border)!important;
+}
+
+.jira-theme-plugin-setting-upload {
+  display: grid;
+  justify-content: start;
+  border: 1px solid var(--jira-border);
+}
+
+.jira-theme-plugin-setting-upload .section-wrp > div {
+  margin-top: 10px;
+}
+
+.jira-theme-plugin-setting-upload .section-wrp label {
+  padding-right: 20px;
+}
+
+.image-upload-section img{
+  max-width: 200px;
+  max-height: 50px;
+  padding: 10px;
+}
+
+.image-upload-section img.dark{
+  background: #333;
+}
+
+.image-upload-section img.light{
+  background: #fff;
+}
+
+.image-upload-section .remove {
+  color: #d73527;
+  font-size: 12px;
+  margin-left: 10px;
+}
+.jira-recommend-section {
+  font-size: 11px;
+  color: #666;
+  margin-top: 5px;
+}
+
+.jira-note-section {
+  font-size: 11px;
+  color: #666;
+  margin-top: 10px;
+  padding: 10px;
+  background: var(--jira-surface-alt) !important;
+  border-radius: 3px;
 }

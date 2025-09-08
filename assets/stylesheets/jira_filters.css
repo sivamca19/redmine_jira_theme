@@ -198,7 +198,6 @@ legend {
 .toggle-multiselect .icon-svg {
   width: 14px;
   height: 14px;
-  fill: white;
 }
 
 /* Add Filter Section - Fixed Layout */
@@ -376,6 +375,10 @@ table.list td.buttons {
   background: var(--jira-warning) !important;
 }
 
-.buttons a svg {
-  fill: var(--jira-btn-text) !important;
+#options label{
+  display: inline-block !important;
+}
+
+#display_type_board, #display_type_list {
+  margin-left: 16px !important;
 }

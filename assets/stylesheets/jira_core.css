@@ -109,7 +109,8 @@ a:hover{color:var(--jira-primary-hover)!important;}
 
 div#activity h3 {
   padding: 5px;
-  background-color: var(--jira-surface);
+  color: var(--jira-btn-text) !important;
+  background-color: var(--jira-primary);
   border: 1px solid var(--jira-border);
   border-radius: var(--jira-radius);
   box-shadow: var(--jira-shadow-sm);
@@ -158,4 +159,29 @@ table .context-menu-selection:hover {
 
 #quick-search #q {
   border: 1px solid var(--jira-border);
+}
+
+#activity svg {
+  stroke: #169 !important;
+}
+
+.controller-my #block-issuesassignedtome .contextual.jl-fixed{
+  display: inline !important;
+  clear: unset !important;
+}
+
+#block-issuesassignedtome .contextual svg{
+  stroke: var(--jira-text) !important;
+}
+
+#block-issuesassignedtome .contextual a{
+  padding: 0 !important;
+}
+
+#issuesassignedtome-settings table {
+  clear: clear !important;
+}
+
+.controller-my .autoscroll {
+  clear: both !important;
 }

@@ -2,7 +2,7 @@
 (function() {
   document.addEventListener("DOMContentLoaded", function() {
     // Remove all h1 elements (page titles)
-    document.querySelectorAll("h1").forEach(h1 => h1.remove());
+    // document.querySelectorAll("h1").forEach(h1 => h1.remove());
 
     // Create a logo wrapper
     const logoWrapper = document.createElement("div");

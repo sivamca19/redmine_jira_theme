@@ -1,0 +1,91 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function makeInlineEditable(selector, field, optionsUrl, updateUrl, issueId) {
+      const el = document.querySelector(selector);
+      if (!el) return;
+
+      el.style.cursor = "pointer";
+
+      el.addEventListener("click", function () {
+        if (el.querySelector("select")) return; // already editing
+
+        const currentValue = el.innerText.trim();
+        const select = document.createElement("select");
+
+        // fetch available options from backend
+        fetch(`${optionsUrl}?field=${field}&issue_id=${issueId}`, {
+          method: "GET",
+          credentials: "same-origin",
+          headers: {
+            "Accept": "application/json",
+            "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content
+          }
+        })
+          .then(res => res.json())
+          .then(options => {
+            options.forEach(opt => {
+              const option = document.createElement("option");
+              option.value = opt.id;
+              option.text = opt.name;
+              if (opt.name === currentValue) option.selected = true;
+              select.appendChild(option);
+            });
+
+            el.innerHTML = "";
+            el.appendChild(select);
+            select.focus();
+
+            select.addEventListener("change", function () {
+              fetch(updateUrl, {
+                method: "PATCH",
+                headers: {
+                  "Content-Type": "application/json",
+                  "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content
+                },
+                body: JSON.stringify({ issue: { [field]: this.value } })
+              })
+                .then(res => res.json())
+                .then(data => {
+                  console.log("field", field, data)
+                  if (field === "assigned_to_id" && this.options[this.selectedIndex].value) {
+                    console.log("asdaFDAfadsff")
+                    // Create a link for assigned user
+                    const a = document.createElement("a");
+                    a.className = "user active";
+                    a.href = `/users/${this.options[this.selectedIndex].value}`;
+                    a.innerText = this.options[this.selectedIndex].text;
+                    el.innerHTML = "";
+                    el.appendChild(a);
+                  } else {
+                    el.innerText = data.updated_text || this.options[this.selectedIndex].text;
+                  }
+                })
+                .catch(() => {
+                  el.innerText = currentValue; // fallback on error
+                });
+            });
+          });
+      });
+    }
+
+    // Extract issue id once
+    const issueId = document.querySelector("h2.inline-block")?.textContent.match(/#(\d+)/)?.[1];
+    if (!issueId) return;
+
+    // Common inline edit fields
+    makeInlineEditable(".attributes .assigned-to .value", "assigned_to_id", "/jira_theme/options.json", `/jira_theme/issues/${issueId}.json`, issueId);
+    makeInlineEditable(".attributes .priority .value", "priority_id", "/jira_theme/options.json", `/jira_theme/issues/${issueId}.json`, issueId);
+
+    // Status field (conditional, server-driven)
+    <% if @issue.new_statuses_allowed_to(User.current).any? %>
+      makeInlineEditable(".attributes .status .value", "status_id", "/jira_theme/options.json", `/jira_theme/issues/${issueId}.json`, issueId);
+    <% else %>
+      const statusValue = document.querySelector(".attributes .status .value");
+      if (statusValue) {
+        statusValue.style.cursor = "not-allowed";
+        statusValue.style.pointerEvents = "none";
+        statusValue.setAttribute("title", "You are not allowed to change the status");
+      }
+    <% end %>
+  });
+</script>

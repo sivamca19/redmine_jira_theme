@@ -18,3 +18,78 @@
   <%= hidden_field_tag 'settings[remember_sidebar]', '0' %>
   <%= check_box_tag 'settings[remember_sidebar]', '1', s['remember_sidebar'] == '1' %>
 </p>
+
+<fieldset class="jira-theme-plugin-setting-upload">
+  <legend>Logo Settings</legend>
+  <div class="splitcontent">
+    <div class="splitcontentright section-wrp">
+      <p><label>Light Theme Logo</label></p>
+    </div>
+    <div class="splitcontentleft section-wrp">
+      <div class="box tabular">
+        <% if s['logo_light'].present? %>
+          <div class="image-upload-section">
+            <%= image_tag(s['logo_light'], class: 'light', alt: 'Light Logo Preview') %>
+            <div>
+              <%= link_to 'Remove', '#',
+                  onclick: "if(confirm('Remove light logo?')) {
+                    document.getElementById('remove_logo_light').value = '1';
+                    this.parentElement.parentElement.style.display = 'none';
+                  } return false;",
+                  class:'remove'%>
+            </div>
+          </div>
+        <% end %>
+        <%= file_field_tag 'logo_light', accept: 'image/*' %>
+        <%= hidden_field_tag 'settings[remove_logo_light]', '0', id: 'remove_logo_light' %>
+        <div class="jira-recommend-section">
+          Recommended: PNG format, max 200x50px for best results
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="splitcontent">
+    <div class="splitcontentright section-wrp">
+      <p>
+        <label>Dark Theme Logo</label>
+      </p>
+    </div>
+    <div class="splitcontentleft section-wrp">
+      <div class="box tabular">
+        <% if s['logo_dark'].present? %>
+          <div class="image-upload-section dark">
+            <%= image_tag(s['logo_dark'], class: 'dark', alt: 'Dark Logo Preview') %>
+            <div>
+              <%= link_to 'Remove', '#',
+                  onclick: "if(confirm('Remove dark logo?')) {
+                    document.getElementById('remove_logo_dark').value = '1';
+                    this.parentElement.parentElement.style.display = 'none';
+                  } return false;",
+                  class:'remove' %>
+            </div>
+          </div>
+        <% end %>
+        <%= file_field_tag 'logo_dark', accept: 'image/*' %>
+        <%= hidden_field_tag 'settings[remove_logo_dark]', '0', id: 'remove_logo_dark' %>
+        <div class="jira-recommend-section">
+          Recommended: PNG format, max 200x50px for best results
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jira-note-section ">
+    <strong>Note:</strong> If custom logos are not uploaded, the plugin will use the default logo-white.png and logo-black.png from the plugin assets.
+  </div>
+</fieldset>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[action*="/settings/plugin/redmine_jira_theme"]');
+    if (form) {
+      form.addEventListener('submit', function() {
+        form.setAttribute('enctype', 'multipart/form-data');
+      });
+    }
+  });
+</script>

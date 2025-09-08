@@ -97,3 +97,11 @@ div.modal {
 .ui-dialog .ui-dialog-titlebar-close {
   margin: -19px 0px 0px 0px;
 }
+
+textarea.wiki-edit {
+  width: 99% !important;
+}
+
+.controller-my label {
+  display: inline-block !important;
+}

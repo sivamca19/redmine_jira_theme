@@ -1,5 +1,4 @@
-require 'redmine'
-require_relative 'lib/jira_theme/hooks'
+
 Redmine::Plugin.register :redmine_jira_theme do
   name 'Jira Theme Plugin'
   author 'Sivamanikandan'
@@ -13,6 +12,14 @@ Redmine::Plugin.register :redmine_jira_theme do
     'enabled'            => '1',
     'mode'               => 'system', # light|dark|system
     'allow_user_toggle'  => '1',
-    'remember_sidebar'   => '1'
+    'remember_sidebar'   => '1',
+    'logo_light'         => nil,
+    'logo_dark'          => nil
   }, partial: 'settings/jira_theme'
 end
+
+require 'redmine'
+require_relative 'lib/jira_theme/hooks'
+require_relative 'lib/jira_theme/view_issues_hook'
+require_relative 'lib/jira_theme/settings_controller_patch'
+SettingsController.send(:include, JiraTheme::SettingsControllerPatch) unless SettingsController.included_modules.include?(JiraTheme::SettingsControllerPatch)

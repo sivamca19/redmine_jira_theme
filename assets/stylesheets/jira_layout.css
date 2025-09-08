@@ -167,3 +167,52 @@ body.controller-my #main {
 .controller-timelog #query_form label {
   display: inline !important;
 }
+
+.agile-board-container {
+  background: var(--jira-surface-alt) !important;
+}
+
+.agile-board-header {
+  background: var(--jira-surface) !important;
+}
+
+#agile-board-status-filter{
+  background: var(--jira-surface) !important;
+}
+
+#agile-board-status-filter button {
+  background-color: var(--jira-primary) !important;
+  color: var(--jira-btn-text) !important;
+}
+
+.drdn-content {
+  background-color: var(--jira-surface-alt) !important;
+  border: 1px solid var(--jira-border) !important;
+  border-radius: var(--jira-radius) !important
+}
+
+.time-stats strong, .stat-label {
+  color: var(--jira-text) !important;
+}
+
+.issue-item:hover {
+  background-color: var(--jira-surface) !important;
+}
+
+.issue-subject {
+  color: var(--jira-btn-text) !important;
+}
+
+div.issue {
+  background-color: var(--jira-surface) !important;
+  border: 1px solid var(--jira-border) !important;
+}
+
+.activity-description {
+  color: var(--jira-text) !important;
+}
+
+svg {
+  fill: none !important;
+  stroke: var(--jira-btn-text) !important;
+}

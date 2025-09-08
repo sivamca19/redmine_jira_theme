@@ -1,13 +1,16 @@
 /* ----------------------
    Projects Index Grid
 ----------------------- */
+
+#projects-index {
+  margin-left: 25px !important;
+}
 #projects-index ul.projects {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
 }
 
 #projects-index ul.projects li.root {
@@ -39,4 +42,12 @@
 }
 #projects-index ul.projects li.root > div.root a.project:hover {
   color: var(--jira-link);
+}
+
+#projects-index svg {
+  stroke: var(--jira-text) !important;
+}
+
+#projects-index div.root {
+  min-height: 100px !important;
 }

@@ -1,8 +1,13 @@
 /* JIRA Theme — Issue lists & details */
 
 .issue{
-  background:var(--jira-surface)!important;border:1px solid var(--jira-border)!important;border-radius:var(--jira-radius)!important;
-  padding:20px!important;margin-bottom:16px!important;transition:all .2s ease
+  background:var(--jira-surface)!important;
+  border:1px solid var(--jira-border)!important;
+  border-radius:var(--jira-radius)!important;
+  padding:7px!important;
+  margin-bottom:16px!important;
+  transition:all .2s ease;
+  margin-right: 3px;
 }
 .issue:hover{box-shadow:var(--jira-shadow-md);border-color:var(--jira-primary)}
 .issue h3{color:var(--jira-text)!important;font-size:16px;font-weight:600;margin-bottom:8px}
@@ -40,4 +45,48 @@
 body.controller-issues .table-wrapper, table {
   margin: 0 5px !important;
   min-width: 100px !important;
+}
+
+table.progress td.todo {
+  background: var(--jira-surface-alt)
+}
+
+.select2-container--default .select2-selection--multiple {
+  background-color: var(--jira-surface-alt) !important;
+  border: 1px solid var(--jira-border) !important;
+}
+
+.select2-dropdown {
+  background-color: var(--jira-surface-alt) !important;
+  border: 1px solid var(--jira-border) !important;
+}
+
+.select2-container--default .select2-search--inline .select2-search__field {
+  background-color: var(--jira-surface-alt) !important;
+}
+
+#issue-form fieldset {
+  margin-bottom: 10px;
+}
+
+.splitcontent, #issue_tree, #relations {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.jstBlock {
+  margin-left: 10px;
+}
+
+#add_notes label {
+  display: inline-block !important;
+  margin-left: 0 !important;
+}
+
+#issue_private_notes {
+  margin-left: 10px;
+}
+
+#issue_is_private_wrap label {
+  display: inline-block !important;
 }
