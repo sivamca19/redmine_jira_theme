@@ -140,8 +140,12 @@ body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
 }
 
 #sidebar a.selected {
-  background: var(--jira-primary-light, #e3f2fd);
-  color: var(--jira-primary, #1976d2) !important;
+  background: var(--jira-primary, #e3f2fd);
+  color: var(--jira-btn-text, #1976d2) !important;
+}
+
+#sidebar a.selected svg {
+  stroke: var(--jira-btn-text) !important;
 }
 
 /* Mobile responsive */
@@ -286,4 +290,8 @@ body.action-login .jl-sidebar-toggle {
   display: inline-block !important;
   margin-bottom: 0;
   margin-left: 0;
+}
+
+#sidebar-wrapper svg {
+  stroke: var(--jira-text) !important;
 }
