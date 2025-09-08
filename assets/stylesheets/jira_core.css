@@ -185,3 +185,11 @@ table .context-menu-selection:hover {
 .controller-my .autoscroll {
   clear: both !important;
 }
+
+.drdn-items > * {
+  border: 1px solid var(--jira-border) !important;
+}
+
+div + .drdn-items {
+  border-top: 1px solid var(--jira-border) !important;
+}
