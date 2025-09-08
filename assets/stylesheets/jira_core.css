@@ -193,3 +193,7 @@ table .context-menu-selection:hover {
 div + .drdn-items {
   border-top: 1px solid var(--jira-border) !important;
 }
+
+#admin-index svg {
+  stroke: var(--jira-text) !important;
+}
