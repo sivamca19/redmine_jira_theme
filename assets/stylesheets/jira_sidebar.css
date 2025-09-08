@@ -140,12 +140,16 @@ body:has(.jl-sidebar-toggle) #sidebar-switch-panel,
 }
 
 #sidebar a.selected {
-  background: var(--jira-primary, #e3f2fd);
-  color: var(--jira-btn-text, #1976d2) !important;
+  background: var(--jira-primary);
+  color: var(--jira-btn-text) !important;
 }
 
 #sidebar a.selected svg {
   stroke: var(--jira-btn-text) !important;
+}
+
+#sidebar a svg {
+  stroke: var(--jira-text) !important;
 }
 
 /* Mobile responsive */

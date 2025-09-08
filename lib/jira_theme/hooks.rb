@@ -187,12 +187,13 @@ module JiraTheme
             window.ALLOWUSERTOGGLETHEME = #{allow_user_toggle};
             const pluginMode = '#{mode_setting}';
             function resolveTheme(mode) {
-              localStorage.setItem('jiralike-theme', mode);
-              if (mode === 'system') {
+              const currentTheme = localStorage.getItem('jiralike-theme') || mode;
+              localStorage.setItem('jiralike-theme', currentTheme);
+              if (currentTheme === 'system') {
                 return window.matchMedia &&
                   window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
               }
-              return mode;
+              return currentTheme;
             }
 
             const theme = resolveTheme(pluginMode);

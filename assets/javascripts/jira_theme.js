@@ -71,6 +71,7 @@
     document.documentElement.setAttribute('data-theme', effective);
     document.body.classList.remove('jiralike-light','jiralike-dark');
     document.body.classList.add('jiralike', 'jiralike-' + effective);
+    localStorage.setItem('jiralike-theme', theme);
 
     const btn = document.getElementById('jira-theme-switch');
     if (btn) {
