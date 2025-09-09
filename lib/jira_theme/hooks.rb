@@ -185,6 +185,9 @@ module JiraTheme
         (function() {
           try {
             window.ALLOWUSERTOGGLETHEME = #{allow_user_toggle};
+            window.trackerColors = #{(Setting.plugin_redmine_jira_theme['tracker_colors'] || {}).to_json.html_safe};
+            window.statusColors = #{(Setting.plugin_redmine_jira_theme['status_colors'] || {}).to_json.html_safe};
+            window.priorityColors = #{(Setting.plugin_redmine_jira_theme['priority_colors'] || {}).to_json.html_safe};
             const pluginMode = '#{mode_setting}';
             function resolveTheme(mode) {
               const currentTheme = localStorage.getItem('jiralike-theme') || mode;

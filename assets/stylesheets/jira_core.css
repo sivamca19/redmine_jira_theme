@@ -197,3 +197,18 @@ div + .drdn-items {
 #admin-index svg {
   stroke: var(--jira-text) !important;
 }
+
+.jl-badge {
+  display: inline-block;       /* make it behave like a tag */
+  padding: 12px 10px;            /* space inside */
+  border-radius: 12px;         /* more rounded like a tag */
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #fff;
+  background: #6c757d;         /* default gray background */
+  line-height: 1;              /* tighter vertical alignment */
+  vertical-align: middle;      /* align better in table cells */
+  white-space: nowrap;         /* prevent breaking */
+}

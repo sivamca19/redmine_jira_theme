@@ -13,10 +13,10 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
 }
 
-#projects-index ul.projects li.root {
+/* #projects-index ul.projects li.root {
   margin: 0;
   padding: 0;
-}
+} */
 
 #projects-index ul.projects li.root > div.root {
   background: var(--jira-bg-alt);
@@ -50,4 +50,12 @@
 
 #projects-index div.root {
   min-height: 100px !important;
+}
+
+#projects-index ul.projects li.root {
+  border: 1px solid var(--jira-border) !important;
+}
+
+#projects-index li.root ul.projects {
+  margin-top: 5px !important;
 }

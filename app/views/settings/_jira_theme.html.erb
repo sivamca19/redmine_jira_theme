@@ -19,8 +19,71 @@
   <%= check_box_tag 'settings[remember_sidebar]', '1', s['remember_sidebar'] == '1' %>
 </p>
 
-<fieldset class="jira-theme-plugin-setting-upload">
-  <legend>Logo Settings</legend>
+<fieldset class="box collapsible collapsed">
+  <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
+    <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
+    Tracker Colors
+  </legend>
+  <% tracker_colors = Setting.plugin_redmine_jira_theme['tracker_colors'] || {} %>
+  <div class="tabular settings">
+    <% Tracker.all.order(:position).each do |tracker| %>
+      <% color = tracker_colors[tracker.name.downcase].presence || "##{SecureRandom.hex(3)}" %>
+      <p class="color-wrapper">
+        <label for="settings_tracker_colors_<%= tracker.id %>"><%= tracker.name %></label>
+        <input type="color"
+          name="settings[tracker_colors][<%= tracker.name.downcase %>]"
+          id="settings_tracker_colors_<%= tracker.id %>"
+          value="<%= color %>">
+      </p>
+    <% end %>
+  </div>
+</fieldset>
+
+<fieldset class="box collapsible collapsed">
+  <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
+    <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
+    Status Colors
+  </legend>
+  <% status_colors = Setting.plugin_redmine_jira_theme['status_colors'] || {} %>
+  <div class="tabular settings">
+    <% IssueStatus.all.order(:position).each do |status| %>
+      <% color = status_colors[status.name.downcase].presence || "##{SecureRandom.hex(3)}" %>
+      <p class="color-wrapper">
+        <label for="settings_status_colors_<%= status.id %>"><%= status.name %></label>
+        <input type="color"
+          name="settings[status_colors][<%= status.name.downcase %>]"
+          id="settings_status_colors_<%= status.id %>"
+          value="<%= color %>">
+      </p>
+    <% end %>
+  </div>
+</fieldset>
+
+<fieldset class="box collapsible collapsed">
+  <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
+    <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
+    Priority Colors
+  </legend>
+  <% priority_colors = Setting.plugin_redmine_jira_theme['priority_colors'] || {} %>
+  <div class="tabular settings">
+    <% IssuePriority.all.order(:position).each do |priority| %>
+      <% color = priority_colors[priority.name.downcase].presence || "##{SecureRandom.hex(3)}" %>
+      <p class="color-wrapper">
+        <label for="settings_priority_colors_<%= priority.id %>"><%= priority.name %></label>
+        <input type="color"
+          name="settings[priority_colors][<%= priority.name.downcase %>]"
+          id="settings_priority_colors_<%= priority.id %>"
+          value="<%= color %>">
+      </p>
+    <% end %>
+  </div>
+</fieldset>
+
+<fieldset class="jira-theme-plugin-setting-upload collapsible collapsed">
+  <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
+    <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
+    Logo Settings
+  </legend>
   <div class="splitcontent">
     <div class="splitcontentright section-wrp">
       <p><label>Light Theme Logo</label></p>

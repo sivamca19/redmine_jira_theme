@@ -13,51 +13,38 @@
   }
 
   function addStatusBadges() {
-    // Only select <td> elements with class "status", "priority", or "tracker"
     const sels = ['td.status', 'td.priority', 'td.tracker'];
 
     document.querySelectorAll(sels.join(', ')).forEach(el => {
-      // Avoid re-wrapping if already processed
       if (el.querySelector('.jl-badge')) return;
 
       const text = (el.innerText || el.textContent || '').trim();
       const lowerText = text.toLowerCase();
-
-      // Create span wrapper
       const span = document.createElement('span');
       span.classList.add('jl-badge');
       span.textContent = text;
 
-      // Status-based classes
-      if (/new|open|todo|assigned/.test(lowerText)) {
-        span.classList.add('jl-badge-blue');
-      } else if (/pending|doing|started|support/.test(lowerText)) {
-        span.classList.add('jl-badge-yellow');
-      } else if (/resolved|done|closed|completed/.test(lowerText)) {
-        span.classList.add('jl-badge-green');
-      } else if (/blocked|rejected|cancelled|failed|bug/.test(lowerText)) {
-        span.classList.add('jl-badge-red');
+      let colorMap;
+      if (el.classList.contains('status')) {
+        colorMap = window.statusColors;
+      } else if (el.classList.contains('priority')) {
+        colorMap = window.priorityColors;
+      } else if (el.classList.contains('tracker')) {
+        colorMap = window.trackerColors;
       }
 
-      // Priority-based classes
-      if (/low|minor/.test(lowerText)) {
-        span.classList.add('jl-badge-blue');
-      } else if (/normal|medium/.test(lowerText)) {
-        span.classList.add('jl-badge-yellow');
-      } else if (/high|major/.test(lowerText)) {
-        span.classList.add('jl-badge-red');
-      } else if (/urgent|critical|blocker/.test(lowerText)) {
-        span.classList.add('jl-badge-red');
-        span.style.background = '#de350b';
+      if (colorMap && colorMap[lowerText]) {
+        span.style.backgroundColor = colorMap[lowerText];
+        span.style.color = '#fff';
+      } else {
+        span.style.backgroundColor = '#888';
+        span.style.color = '#fff';
       }
 
-      // Replace element content with span
       el.textContent = '';
       el.appendChild(span);
     });
   }
-
-
 
   /* -------------------------
      Theme handling

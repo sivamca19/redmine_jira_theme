@@ -145,3 +145,12 @@ input, select, textarea {
   background: var(--jira-surface-alt) !important;
   border-radius: 3px;
 }
+
+.status-color-section {
+  margin-left: 100px;
+}
+
+.color-wrapper input {
+  width: 100px !important;
+  height: 50px !important;
+}
