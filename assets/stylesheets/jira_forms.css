@@ -51,7 +51,7 @@ label input[type="checkbox"] {
 }
 .button:hover,.buttons a:hover,.jl-btn:hover,button:hover,.btn:hover{background:var(--jira-hover);border-color:var(--jira-border);transform:translateY(-1px);box-shadow:var(--jira-shadow-sm)}
 /* Primary */
-.button.primary,input[type=submit],.jl-btn.primary,.btn-primary{background:var(--jira-primary)!important;border-color:var(--jira-primary)!important;color:#fff!important}
+.button.primary,input[type=submit],.jl-btn.primary,.btn-primary{background:var(--jira-primary)!important;border-color:var(--jira-primary)!important;color:var(--jira-btn-text)!important}
 .button.primary:hover,input[type=submit]:hover,.jl-btn.primary:hover,.btn-primary:hover{background:var(--jira-primary-hover)!important;border-color:var(--jira-primary-hover)!important}
 
 /* Contextual actions (container in layout.css) */

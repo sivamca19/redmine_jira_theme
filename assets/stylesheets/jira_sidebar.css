@@ -277,7 +277,7 @@ body.action-login .jl-sidebar-toggle {
   width: 32px; /* increased from 20px for better clickability */
   height: 60px; /* increased from 40px for better clickability */
   background: var(--jira-primary, #2d2d2d);
-  color: #fff;
+  color: var(--jira-btn-text);
   display: flex;
   align-items: center;
   justify-content: center;

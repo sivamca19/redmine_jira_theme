@@ -152,7 +152,7 @@
 #project-jump.drdn .drdn-items a {
   display: block;
   padding: 8px 12px;
-  color: var(--jira-text);
+  color: var(--jira-text) !important;
   text-decoration: none;
 }
 #project-jump.drdn .drdn-items a:hover {
@@ -234,8 +234,6 @@
   background:var(--jira-surface)!important;
   border:none!important;
   padding:0 16px!important;
-  overflow-x:auto;
-  overflow-y:hidden;
   display: flex;
   justify-content: center;
   border-top: 1px solid var(--jira-border);
@@ -296,11 +294,11 @@
   #quick-search {
     right: 280px;
   }
-  
+
   #quick-search input[type="text"] {
     width: 120px;
   }
-  
+
   #project-jump {
     min-width: 140px;
   }
@@ -317,18 +315,18 @@
     width: 100%;
     justify-content: center;
   }
-  
+
   #top-menu {
     display: none !important;
   }
-  
+
   #top-menu-left {
     order: 1;
     width: 100%;
     justify-content: center;
     margin-bottom: 8px;
   }
-  
+
   #top-menu-right {
     order: 3;
     width: 100%;
@@ -342,5 +340,14 @@
 }
 
 #top-menu #loggedas {
+  color: var(--jira-text) !important;
+}
+
+#main-menu .menu-children {
+  background-color: var(--jira-surface) !important;
+  border-color: var(--jira-border) !important;
+}
+
+#header a {
   color: var(--jira-text) !important;
 }

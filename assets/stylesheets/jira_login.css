@@ -53,8 +53,8 @@
 
 button:disabled,
 input[type="submit"]:disabled {
-  background-color: #ccc;
-  color: #666;
+  background-color: var(--jira-surface-alt);
+  color: var(--jira-text-secondary);
   cursor: not-allowed;
   opacity: 0.6;
 }

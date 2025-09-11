@@ -4,7 +4,7 @@ module JiraTheme
     COMPONENT_MAPPING = {
       core: {
         css: ['jira_core', 'jira_layout', 'jira_header', 'jira_filters', 'jira_tables', 'jira_logo', 'jira_admin'],
-        js: ['jira_core', 'jira_theme', 'jira_logo']
+        js: ['jira_core', 'jira_theme', 'jira_logo', 'jira_nav_dropdown']
       },
       issues: {
         css: ['jira_issues', 'jira_tables', 'jira_forms'],
@@ -372,6 +372,9 @@ module JiraTheme
       variables << "  --jira-btn-text: #ffffff;"
       variables << "  --jira-warning: #ffab00;"
       variables << "  --jira-error: #de350b;"
+      variables << "  --jira-danger: #d73527;"
+      variables << "  --jira-success-hover: #00a86b;"
+      variables << "  --jira-surface-dark: #333333;"
 
       # Generate shadows based on primary color
       if colors['primary']
@@ -436,6 +439,9 @@ module JiraTheme
       variables << "  --jira-btn-text: #ffffff;"
       variables << "  --jira-warning: #f5cd47;"
       variables << "  --jira-error: #f87462;"
+      variables << "  --jira-danger: #f87462;"
+      variables << "  --jira-success-hover: #4ade80;"
+      variables << "  --jira-surface-dark: #1a1a1a;"
 
       # Dark theme shadows
       variables << "  --jira-shadow-sm: 0 1px 1px rgba(0, 0, 0, 0.3);"

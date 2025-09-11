@@ -116,27 +116,27 @@ input, select, textarea {
 }
 
 .image-upload-section img.dark{
-  background: #333;
+  background: var(--jira-surface-dark);
 }
 
 .image-upload-section img.light{
-  background: #fff;
+  background: var(--jira-surface);
 }
 
 .image-upload-section .remove {
-  color: #d73527;
+  color: var(--jira-danger);
   font-size: 12px;
   margin-left: 10px;
 }
 .jira-recommend-section {
   font-size: 11px;
-  color: #666;
+  color: var(--jira-text-secondary);
   margin-top: 5px;
 }
 
 .jira-note-section {
   font-size: 11px;
-  color: #666;
+  color: var(--jira-text-secondary);
   margin-top: 10px;
   padding: 10px;
   background: var(--jira-surface-alt) !important;

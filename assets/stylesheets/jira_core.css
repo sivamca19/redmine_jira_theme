@@ -159,8 +159,8 @@ div + .drdn-items {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .5px;
-  color: #fff;
-  background: #6c757d;         /* default gray background */
+  color: var(--jira-btn-text);
+  background: var(--jira-surface-alt);         /* default gray background */
   line-height: 1;              /* tighter vertical alignment */
   vertical-align: middle;      /* align better in table cells */
   white-space: nowrap;         /* prevent breaking */
