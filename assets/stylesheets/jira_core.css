@@ -1,55 +1,8 @@
 /* JIRA Theme — Core (variables, reset, typography, links) */
 
-/* ---------- CSS Variables (Light) ---------- */
-:root{
-  --jira-primary:#0052cc;
-  --jira-primary-hover:#0065ff;
-  --jira-bg:#f4f5f7;
-  --jira-surface:#fff;
-  --jira-surface-alt:#f7f8f9;
-  --jira-surface-raised:#fff;
-  --jira-hover:#ebecf0;
-  --jira-text:#172b4d;
-  --jira-text-secondary:#5e6c84;
-  --jira-text-muted:#6b778c;
-  --jira-border:#dfe1e6;
-  --jira-border-focus:#4c9aff;
-  --jira-radius:8px;
-  --jira-shadow-sm:0 1px 1px rgba(9,30,66,.08);
-  --jira-shadow-md:0 2px 4px rgba(9,30,66,.13);
-  --jira-shadow-lg:0 8px 16px rgba(9,30,66,.15);
-  --jira-success:#00875a;
-  --jira-warning:#ffab00;
-  --jira-error:#de350b;
-  --jira-info:#0065ff;
-  --jira-btn-text: #fff;
-  --jira-tab-hover: #f5cd47;
-}
-
-/* ---------- Dark Theme Variables ---------- */
-html[data-theme="dark"],body[data-theme="dark"],.theme-dark{
-  --jira-primary:#4c9aff;
-  --jira-primary-hover:#85b8ff;
-  --jira-bg:#0f1419;
-  --jira-surface:#1d2125;
-  --jira-surface-alt:#22272b;
-  --jira-surface-raised:#282e33;
-  --jira-hover:#2c333a;
-  --jira-text:#b3bac5;
-  --jira-text-secondary:#8c9bad;
-  --jira-text-muted:#6c7b7f;
-  --jira-border:#2c333a;
-  --jira-border-focus:#85b8ff;
-  --jira-shadow-sm:0 1px 1px rgba(0,0,0,.3);
-  --jira-shadow-md:0 2px 4px rgba(0,0,0,.4);
-  --jira-shadow-lg:0 8px 16px rgba(0,0,0,.5);
-  --jira-success:#00c896;
-  --jira-warning:#f5cd47;
-  --jira-error:#f87462;
-  --jira-info:#85b8ff;
-  --jira-btn-text: #fff;
-  --jira-tab-hover: #f5cd47;
-}
+/* ---------- CSS Variables ---------- */
+/* Note: All CSS variables are now dynamically generated via plugin settings */
+/* This ensures user customizations take precedence over any hardcoded values */
 
 /* ---------- Reset & Base ---------- */
 *{margin:0;padding:0;box-sizing:border-box}

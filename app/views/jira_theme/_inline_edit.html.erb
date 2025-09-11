@@ -1,3 +1,11 @@
+<%
+  # Only enable inline edit if jira theme is enabled and user is logged in
+  jira_settings = Setting.plugin_redmine_jira_theme || {}
+  theme_enabled = jira_settings['enabled'] == '1'
+  user_logged_in = User.current.logged?
+%>
+
+<% if theme_enabled && user_logged_in %>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     function makeInlineEditable(selector, field, optionsUrl, updateUrl, issueId) {
@@ -12,16 +20,27 @@
         const currentValue = el.innerText.trim();
         const select = document.createElement("select");
 
-        // fetch available options from backend
-        fetch(`${optionsUrl}?field=${field}&issue_id=${issueId}`, {
+        // fetch available options from backend using API key authentication
+        const apiKey = "<%= User.current.api_key if User.current.logged? %>";
+        if (!apiKey) {
+          console.error("API key not found - user not logged in");
+          return;
+        }
+
+        fetch(`${optionsUrl}?field=${field}&issue_id=${issueId}&key=${apiKey}`, {
           method: "GET",
-          credentials: "same-origin",
           headers: {
             "Accept": "application/json",
-            "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content
+            "X-Requested-With": "XMLHttpRequest"
           }
         })
-          .then(res => res.json())
+          .then(res => {
+            if (!res.ok) {
+              console.error(`Options fetch failed: ${res.status} ${res.statusText}`);
+              throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+            }
+            return res.json();
+          })
           .then(options => {
             options.forEach(opt => {
               const option = document.createElement("option");
@@ -36,34 +55,56 @@
             select.focus();
 
             select.addEventListener("change", function () {
-              fetch(updateUrl, {
+              if (!apiKey) {
+                console.error("API key not found for update");
+                el.innerText = currentValue;
+                return;
+              }
+
+              fetch(`${updateUrl}?key=${apiKey}`, {
                 method: "PATCH",
                 headers: {
                   "Content-Type": "application/json",
-                  "X-CSRF-Token": document.querySelector("meta[name=csrf-token]").content
+                  "Accept": "application/json",
+                  "X-Requested-With": "XMLHttpRequest"
                 },
                 body: JSON.stringify({ issue: { [field]: this.value } })
               })
-                .then(res => res.json())
+                .then(res => {
+                  if (!res.ok) {
+                    console.error(`Update failed: ${res.status} ${res.statusText}`);
+                    throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+                  }
+                  return res.json();
+                })
                 .then(data => {
-                  console.log("field", field, data)
-                  if (field === "assigned_to_id" && this.options[this.selectedIndex].value) {
-                    console.log("asdaFDAfadsff")
-                    // Create a link for assigned user
-                    const a = document.createElement("a");
-                    a.className = "user active";
-                    a.href = `/users/${this.options[this.selectedIndex].value}`;
-                    a.innerText = this.options[this.selectedIndex].text;
-                    el.innerHTML = "";
-                    el.appendChild(a);
+                  console.log("Update successful:", field, data);
+                  if (data.success) {
+                    if (field === "assigned_to_id" && this.options[this.selectedIndex].value) {
+                      // Create a link for assigned user
+                      const a = document.createElement("a");
+                      a.className = "user active";
+                      a.href = `/users/${this.options[this.selectedIndex].value}`;
+                      a.innerText = this.options[this.selectedIndex].text;
+                      el.innerHTML = "";
+                      el.appendChild(a);
+                    } else {
+                      el.innerText = data.updated_text || this.options[this.selectedIndex].text;
+                    }
                   } else {
-                    el.innerText = data.updated_text || this.options[this.selectedIndex].text;
+                    console.error("Update failed:", data.errors || data.error);
+                    el.innerText = currentValue;
                   }
                 })
-                .catch(() => {
+                .catch((error) => {
+                  console.error("Update error:", error);
                   el.innerText = currentValue; // fallback on error
                 });
             });
+          })
+          .catch((error) => {
+            console.error("Options fetch error:", error);
+            el.innerText = currentValue; // fallback on error
           });
       });
     }
@@ -89,3 +130,4 @@
     <% end %>
   });
 </script>
+<% end %>

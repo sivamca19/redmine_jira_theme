@@ -89,44 +89,51 @@
     const main = document.getElementById('main');
     const sidebar = document.getElementById('sidebar');
     const isCollapsed = html.classList.contains('jl-sidebar-collapsed') || main.classList.contains('nosidebar');
+    const rememberSidebar = window.REMEMBERSIDEBAR !== false; // default to true if not set
 
     if (isCollapsed) {
       html.classList.remove('jl-sidebar-collapsed');
       main.classList.remove('nosidebar');
       if (sidebar) sidebar.style.display = '';
-      localStorage.setItem(JT.config.sidebarStorageKey, 'false');
+      if (rememberSidebar) {
+        localStorage.setItem(JT.config.sidebarStorageKey, 'false');
+      }
       console.log('JiraTheme: Sidebar expanded');
     } else {
       html.classList.add('jl-sidebar-collapsed');
       main.classList.add('nosidebar');
-      localStorage.setItem(JT.config.sidebarStorageKey, 'true');
+      if (rememberSidebar) {
+        localStorage.setItem(JT.config.sidebarStorageKey, 'true');
+      }
       console.log('JiraTheme: Sidebar collapsed');
     }
 
-    setTimeout(() => {
-      if (main) {
-        main.style.display = 'none';
-        main.offsetHeight; // reflow
-        main.style.display = 'grid';
-      }
-    }, 10);
+    // Removed jumping animation - let CSS transitions handle the smooth animation
   }
 
   function restoreSidebarState(){
     try{
       if(!hasSidebarContent()) return;
-      const isCollapsed = localStorage.getItem(JT.config.sidebarStorageKey) === 'true';
+      const rememberSidebar = window.REMEMBERSIDEBAR !== false; // default to true if not set
       const html = document.documentElement;
       const main = document.getElementById('main');
 
-      if (isCollapsed){
-        html.classList.add('jl-sidebar-collapsed');
-        if (main) main.classList.add('nosidebar');
-        console.log('JiraTheme: Restored collapsed state');
+      if (rememberSidebar) {
+        const isCollapsed = localStorage.getItem(JT.config.sidebarStorageKey) === 'true';
+        if (isCollapsed){
+          html.classList.add('jl-sidebar-collapsed');
+          if (main) main.classList.add('nosidebar');
+          console.log('JiraTheme: Restored collapsed state from localStorage');
+        } else {
+          html.classList.remove('jl-sidebar-collapsed');
+          if (main) main.classList.remove('nosidebar');
+          console.log('JiraTheme: Restored expanded state from localStorage');
+        }
       } else {
+        // If remember sidebar is disabled, always start expanded
         html.classList.remove('jl-sidebar-collapsed');
         if (main) main.classList.remove('nosidebar');
-        console.log('JiraTheme: Restored expanded state');
+        console.log('JiraTheme: Remember sidebar disabled, starting expanded');
       }
     }catch(e){
       console.warn('JiraTheme: restoreSidebarState failed', e);

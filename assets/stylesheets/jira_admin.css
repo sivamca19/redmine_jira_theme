@@ -2,8 +2,8 @@
   margin-bottom: 10px;
 }
 
-#permissions fieldset > legend, 
-fieldset#project_modules > legend, 
+#permissions fieldset > legend,
+fieldset#project_modules > legend,
 #user_form fieldset > legend,
 #tracker_project_ids > legend,
 #tab-content-notifications fieldset > legend,
@@ -44,9 +44,6 @@ input, select, textarea {
   width: auto !important;
 }
 
-#permissions fieldset > legend svg {
-  fill: var(--jira-btn-text) !important;
-}
 
 #new-attachments {
   padding: 30px

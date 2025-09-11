@@ -33,6 +33,23 @@ Redmine::Plugin.register :redmine_jira_theme do
     'tracker_colors'     => tracker_colors,
     'status_colors'      => status_colors,
     'priority_colors'    => priority_colors,
+    'auto_generate_dark' => '1',
+    'use_same_logo_for_dark' => '1',
+    'theme_colors_light' => {
+      'primary'          => '#285236',
+      'primary_hover'    => '#2b8248',
+      'bg'               => '#e5f0e9',
+      'border'           => '#acd2b9',
+      'transparent'      => 'rgba(229, 240, 233, .72)',
+      'radius'           => '8px'
+    },
+    'theme_colors_dark'  => {
+      'primary'          => '#2b8248',
+      'primary_hover'    => '#3ea05a',
+      'bg'               => '#1a2920',
+      'border'           => '#4a6b52',
+      'transparent'      => 'rgba(43, 130, 72, .2)'
+    }
   }, partial: 'settings/jira_theme'
 end
 

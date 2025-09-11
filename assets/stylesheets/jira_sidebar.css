@@ -28,12 +28,14 @@ body.jl-no-sidebar #main {
 
 
 .jl-sidebar-toggle:hover {
-  background: var(--jira-text-secondary) !important;
+  background: var(--jira-primary-hover, #0066cc) !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+  transform: translateY(-50%) scale(1.05); /* slight grow on hover */
 }
 
 .jl-sidebar-toggle:active {
-  transform: scale(0.95) !important;
+  transform: translateY(-50%) scale(0.95) !important;
+  transition: transform 0.1s ease !important;
 }
 
 /* Hide native Redmine sidebar toggle when custom one exists */
@@ -270,20 +272,22 @@ body.action-login .jl-sidebar-toggle {
 .jl-sidebar-toggle {
   position: absolute;
   top: 50%;
-  left: -7px; /* sticks to sidebar edge */
+  left: -10px; /* sticks to sidebar edge */
   transform: translateY(-50%);
-  width: 20px;
-  height: 40px;
+  width: 32px; /* increased from 20px for better clickability */
+  height: 60px; /* increased from 40px for better clickability */
   background: var(--jira-primary, #2d2d2d);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 0 5px 5px 0;
-  font-size: 14px;
+  border-radius: 0 8px 8px 0; /* slightly more rounded */
+  font-size: 16px; /* slightly larger icon */
   z-index: 1000;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
+  user-select: none; /* prevent text selection */
+  -webkit-tap-highlight-color: transparent; /* prevent mobile tap highlight */
 }
 
 #sidebar-wrapper a {

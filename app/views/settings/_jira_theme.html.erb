@@ -22,6 +22,95 @@
 <fieldset class="box collapsible collapsed">
   <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
     <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
+    Theme Colors
+  </legend>
+  <div class="tabular settings">
+    <p>
+      <label>Auto-generate dark theme from light colors</label>
+      <%= hidden_field_tag 'settings[auto_generate_dark]', '0' %>
+      <%= check_box_tag 'settings[auto_generate_dark]', '1', s['auto_generate_dark'] == '1',
+          onchange: "toggleDarkThemeFields(this.checked)" %>
+      <em>When enabled, dark theme colors will be automatically generated based on light theme colors</em>
+    </p>
+
+    <h4>Light Theme Colors</h4>
+    <% light_colors = s['theme_colors_light'] || {} %>
+    <p class="color-wrapper">
+      <label for="settings_theme_primary_light">Primary Color</label>
+      <input type="color"
+        name="settings[theme_colors_light][primary]"
+        id="settings_theme_primary_light"
+        value="<%= light_colors['primary'] || '#285236' %>">
+    </p>
+    <p class="color-wrapper">
+      <label for="settings_theme_primary_hover_light">Primary Hover Color</label>
+      <input type="color"
+        name="settings[theme_colors_light][primary_hover]"
+        id="settings_theme_primary_hover_light"
+        value="<%= light_colors['primary_hover'] || '#2b8248' %>">
+    </p>
+    <p class="color-wrapper">
+      <label for="settings_theme_bg_light">Background Color</label>
+      <input type="color"
+        name="settings[theme_colors_light][bg]"
+        id="settings_theme_bg_light"
+        value="<%= light_colors['bg'] || '#e5f0e9' %>">
+    </p>
+    <p class="color-wrapper">
+      <label for="settings_theme_border_light">Border Color</label>
+      <input type="color"
+        name="settings[theme_colors_light][border]"
+        id="settings_theme_border_light"
+        value="<%= light_colors['border'] || '#acd2b9' %>">
+    </p>
+    <p>
+      <label for="settings_theme_radius_light">Border Radius</label>
+      <input type="text"
+        name="settings[theme_colors_light][radius]"
+        id="settings_theme_radius_light"
+        value="<%= light_colors['radius'] || '8px' %>"
+        placeholder="e.g., 8px, 4px, 12px">
+      <em>CSS border-radius value (e.g., 8px for rounded corners, 0px for square)</em>
+    </p>
+
+    <div id="dark-theme-fields" style="<%= s['auto_generate_dark'] == '1' ? 'display:none' : '' %>">
+      <h4>Dark Theme Colors</h4>
+      <% dark_colors = s['theme_colors_dark'] || {} %>
+      <p class="color-wrapper">
+        <label for="settings_theme_primary_dark">Primary Color</label>
+        <input type="color"
+          name="settings[theme_colors_dark][primary]"
+          id="settings_theme_primary_dark"
+          value="<%= dark_colors['primary'] || '#2b8248' %>">
+      </p>
+      <p class="color-wrapper">
+        <label for="settings_theme_primary_hover_dark">Primary Hover Color</label>
+        <input type="color"
+          name="settings[theme_colors_dark][primary_hover]"
+          id="settings_theme_primary_hover_dark"
+          value="<%= dark_colors['primary_hover'] || '#3ea05a' %>">
+      </p>
+      <p class="color-wrapper">
+        <label for="settings_theme_bg_dark">Background Color</label>
+        <input type="color"
+          name="settings[theme_colors_dark][bg]"
+          id="settings_theme_bg_dark"
+          value="<%= dark_colors['bg'] || '#1a2920' %>">
+      </p>
+      <p class="color-wrapper">
+        <label for="settings_theme_border_dark">Border Color</label>
+        <input type="color"
+          name="settings[theme_colors_dark][border]"
+          id="settings_theme_border_dark"
+          value="<%= dark_colors['border'] || '#4a6b52' %>">
+      </p>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset class="box collapsible collapsed">
+  <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
+    <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
     Tracker Colors
   </legend>
   <% tracker_colors = Setting.plugin_redmine_jira_theme['tracker_colors'] || {} %>
@@ -84,11 +173,20 @@
     <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
     Logo Settings
   </legend>
+  <div class="tabular settings">
+    <p>
+      <label>Use same logo for dark theme</label>
+      <%= check_box_tag 'settings[use_same_logo_for_dark]', '1', (s['use_same_logo_for_dark'].nil? ? true : s['use_same_logo_for_dark'] == '1'),
+          onchange: "toggleDarkLogo(this.checked)" %>
+      <em>When enabled, the light theme logo will be used for both themes</em>
+    </p>
+  </div>
+
   <div class="splitcontent">
-    <div class="splitcontentright section-wrp">
-      <p><label>Light Theme Logo</label></p>
-    </div>
     <div class="splitcontentleft section-wrp">
+      <p><label>Logo</label></p>
+    </div>
+    <div class="splitcontentright section-wrp">
       <div class="box tabular">
         <% if s['logo_light'].present? %>
           <div class="image-upload-section">
@@ -111,13 +209,13 @@
       </div>
     </div>
   </div>
-  <div class="splitcontent">
-    <div class="splitcontentright section-wrp">
+  <div id="dark-logo-section" class="splitcontent" style="display: none;">
+    <div class="splitcontentleft section-wrp">
       <p>
         <label>Dark Theme Logo</label>
       </p>
     </div>
-    <div class="splitcontentleft section-wrp">
+    <div class="splitcontentright section-wrp">
       <div class="box tabular">
         <% if s['logo_dark'].present? %>
           <div class="image-upload-section dark">
@@ -146,13 +244,4 @@
   </div>
 </fieldset>
 
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form[action*="/settings/plugin/redmine_jira_theme"]');
-    if (form) {
-      form.addEventListener('submit', function() {
-        form.setAttribute('enctype', 'multipart/form-data');
-      });
-    }
-  });
-</script>
+<%= javascript_include_tag 'jira_settings', plugin: 'redmine_jira_theme' %>

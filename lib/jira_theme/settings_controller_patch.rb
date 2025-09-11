@@ -12,6 +12,9 @@ module JiraTheme
       # Only run for our plugin settings
       return unless params[:id] == 'redmine_jira_theme' && request.post? && params[:settings]
 
+      # Handle checkbox settings that don't get sent when unchecked
+      params[:settings]['use_same_logo_for_dark'] = params[:settings]['use_same_logo_for_dark'] || '0'
+
       upload_dir = Rails.root.join('public/plugin_assets/redmine_jira_theme')
       FileUtils.mkdir_p(upload_dir)
 
