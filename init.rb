@@ -30,6 +30,7 @@ Redmine::Plugin.register :redmine_jira_theme do
     'remember_sidebar'   => '1',
     'logo_light'         => nil,
     'logo_dark'          => nil,
+    'favicon'            => nil,
     'tracker_colors'     => tracker_colors,
     'status_colors'      => status_colors,
     'priority_colors'    => priority_colors,

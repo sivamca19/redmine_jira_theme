@@ -57,6 +57,20 @@ module JiraTheme
       else
         params[:settings]['logo_dark'] = Setting.plugin_redmine_jira_theme["logo_dark"]
       end
+
+      # -------------------------
+      # Favicon
+      # -------------------------
+      if params[:favicon].present? && params[:favicon].is_a?(ActionDispatch::Http::UploadedFile)
+        file = params[:favicon]
+        path = upload_dir.join('favicon.ico')
+        File.open(path, 'wb') { |f| f.write(file.read) }
+        params[:settings]['favicon'] = "/plugin_assets/redmine_jira_theme/favicon.ico"
+      elsif params[:settings]['remove_favicon'] == '1'
+        params[:settings]['favicon'] = nil
+      else
+        params[:settings]['favicon'] = Setting.plugin_redmine_jira_theme["favicon"]
+      end
     end
   end
 end

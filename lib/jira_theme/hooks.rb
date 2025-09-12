@@ -46,6 +46,7 @@ module JiraTheme
     def view_layouts_base_html_head(context = {})
       return '' unless jira_theme_enabled?
 
+      favicon_html = generate_favicon_html
       controller = get_controller(context)
       action     = get_action(context)
 
@@ -89,6 +90,9 @@ module JiraTheme
       #   window.PLUGIN_WHITE_LOGO_HTML = `#{logo_white_tag}`;
       #   window.PLUGIN_BLACK_LOGO_HTML = `#{logo_black_tag}`;
       # JS
+
+      # Add favicon to output
+      output << favicon_html
 
       output.join("\n").html_safe
     end
@@ -516,6 +520,63 @@ module JiraTheme
 
     def lighten_color(hex, factor)
       brighten_color(hex, factor)
+    end
+
+    def generate_favicon_html
+      settings = Setting.plugin_redmine_jira_theme || {}
+      favicon_path = settings['favicon']
+
+      # Use custom favicon if uploaded, otherwise use default from plugin assets
+      if favicon_path.present?
+        final_favicon_path = favicon_path
+        favicon_type = get_favicon_type(favicon_path)
+      else
+        # Use static path for plugin assets - Redmine serves plugin assets differently
+        final_favicon_path = '/plugin_assets/redmine_jira_theme/favicon.ico'
+        favicon_type = 'image/x-icon'
+      end
+
+      # Generate favicon link tags
+      favicon_html = []
+
+      # Main favicon
+      favicon_html << content_tag(:link, nil, {
+        rel: 'shortcut icon',
+        type: favicon_type,
+        href: final_favicon_path
+      })
+
+      # Additional favicon formats for better browser support
+      favicon_html << content_tag(:link, nil, {
+        rel: 'icon',
+        type: favicon_type,
+        href: final_favicon_path
+      })
+
+      favicon_html.join("\n")
+    end
+
+    def get_favicon_type(path)
+      case File.extname(path).downcase
+      when '.ico'
+        'image/x-icon'
+      when '.png'
+        'image/png'
+      when '.svg'
+        'image/svg+xml'
+      else
+        'image/x-icon'
+      end
+    end
+
+    def get_default_favicon_path
+      # Use the favicon from plugin assets/images directory
+      plugin_asset_path = File.join(Rails.root, 'plugins', 'redmine_jira_theme', 'assets', 'images', 'favicon.ico')
+      if File.exist?(plugin_asset_path)
+        # Return the asset path that Redmine will serve
+        return "/plugin_assets/redmine_jira_theme/images/favicon.ico"
+      end
+      nil
     end
   end
 end

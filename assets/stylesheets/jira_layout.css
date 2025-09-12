@@ -240,3 +240,23 @@ svg {
   background-color: var(--jira-link) !important;
   color: var(--jira-btn-text) !important;
 }
+/* Favicon Preview Styling */
+.favicon-preview {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 4px;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.image-upload-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 8px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}

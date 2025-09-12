@@ -251,4 +251,44 @@
   </div>
 </fieldset>
 
+<fieldset class="jira-theme-plugin-setting-upload box collapsible collapsed">
+  <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
+    <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
+    Favicon Settings
+  </legend>
+  <div class="tabular settings">
+    <div class="splitcontent">
+      <div class="splitcontentleft section-wrp">
+        <p><label>Custom Favicon</label></p>
+      </div>
+      <div class="splitcontentright section-wrp">
+        <div class="box tabular">
+          <% if s['favicon'].present? %>
+            <div class="image-upload-section">
+              <img src="<%= s['favicon'] %>" alt="Current Favicon" class="favicon-preview" width="32" height="32">
+              <div>
+                <%= link_to 'Remove', '#',
+                    onclick: "if(confirm('Remove custom favicon?')) {
+                      document.getElementById('remove_favicon').value = '1';
+                      this.parentElement.parentElement.style.display = 'none';
+                    } return false;",
+                    class:'remove'%>
+              </div>
+            </div>
+          <% end %>
+          <%= file_field_tag 'favicon', accept: 'image/x-icon,image/vnd.microsoft.icon,image/png,image/svg+xml' %>
+          <%= hidden_field_tag 'settings[remove_favicon]', '0', id: 'remove_favicon' %>
+          <div class="jira-recommend-section">
+            Recommended: ICO format, 16x16 or 32x32 pixels. PNG and SVG also supported.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="jira-note-section">
+    <strong>Note:</strong> Custom favicon will replace the default Redmine favicon. Leave empty to use default.
+  </div>
+</fieldset>
+
 <%= javascript_include_tag 'jira_settings', plugin: 'redmine_jira_theme' %>
