@@ -26,6 +26,13 @@
   </legend>
   <div class="tabular settings">
     <p>
+      <label>Reset to JIRA defaults</label>
+      <%= button_tag 'Reset Theme Colors', type: 'button',
+          onclick: "if(confirm('This will reset all theme colors to JIRA defaults. Continue?')) { resetThemeColors(); }",
+          class: 'button-small' %>
+      <em>Reset all theme colors to the latest JIRA design system defaults</em>
+    </p>
+    <p>
       <label>Auto-generate dark theme from light colors</label>
       <%= hidden_field_tag 'settings[auto_generate_dark]', '0' %>
       <%= check_box_tag 'settings[auto_generate_dark]', '1', s['auto_generate_dark'] == '1',
@@ -168,7 +175,7 @@
   </div>
 </fieldset>
 
-<fieldset class="jira-theme-plugin-setting-upload collapsible collapsed">
+<fieldset class="jira-theme-plugin-setting-upload box collapsible collapsed">
   <legend onclick="toggleFieldset(this);" class='icon icon-collapsed'>
     <svg class="s18 icon-svg" aria-hidden="true"><use href="/assets/icons-731dc012.svg#icon--angle-right"></use></svg>
     Logo Settings

@@ -12,6 +12,18 @@ module JiraTheme
       # Only run for our plugin settings
       return unless params[:id] == 'redmine_jira_theme' && request.post? && params[:settings]
 
+      # Handle theme color reset
+      if params[:reset_theme_colors] == '1'
+        # Get default settings from plugin definition
+        plugin = Redmine::Plugin.find(:redmine_jira_theme)
+        defaults = plugin.settings[:default]
+
+        # Reset theme colors to defaults
+        params[:settings]['theme_colors_light'] = defaults['theme_colors_light']
+        params[:settings]['theme_colors_dark'] = defaults['theme_colors_dark']
+        params[:settings]['auto_generate_dark'] = defaults['auto_generate_dark']
+      end
+
       # Handle checkbox settings that don't get sent when unchecked
       params[:settings]['use_same_logo_for_dark'] = params[:settings]['use_same_logo_for_dark'] || '0'
 

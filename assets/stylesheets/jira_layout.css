@@ -216,3 +216,27 @@ svg {
   fill: none !important;
   stroke: var(--jira-btn-text) !important;
 }
+
+.status-header h3 {
+  background-color: var(--jira-primary) !important;
+  color: var(--jira-btn-text) !important;
+}
+
+.sprint-show-spillover {
+  background-color: var(--jira-surface-alt) !important;
+  border: 1px solid var(--jira-border) !important;
+}
+
+.spillover-controls {
+  background-color: var(--jira-surface-alt) !important;
+  border: 1px solid var(--jira-border) !important;
+}
+
+.spillover-btn {
+  background-color: var(--jira-primary) !important;
+  color: var(--jira-btn-text) !important;
+}
+.spillover-selective-btn {
+  background-color: var(--jira-link) !important;
+  color: var(--jira-btn-text) !important;
+}

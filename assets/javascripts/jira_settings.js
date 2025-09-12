@@ -14,6 +14,33 @@ function toggleDarkLogo(useSameLogo) {
   }
 }
 
+function resetThemeColors() {
+  // Clear all theme color inputs to reset to defaults
+  const lightColorInputs = document.querySelectorAll('input[name^="settings[theme_colors_light]"]');
+  const darkColorInputs = document.querySelectorAll('input[name^="settings[theme_colors_dark]"]');
+
+  lightColorInputs.forEach(input => {
+    input.parentNode.removeChild(input);
+  });
+
+  darkColorInputs.forEach(input => {
+    input.parentNode.removeChild(input);
+  });
+
+  // Add hidden fields to signal reset
+  const form = document.querySelector('form[action*="/settings/plugin/redmine_jira_theme"]');
+  if (form) {
+    const resetField = document.createElement('input');
+    resetField.type = 'hidden';
+    resetField.name = 'reset_theme_colors';
+    resetField.value = '1';
+    form.appendChild(resetField);
+
+    // Submit the form to apply reset
+    form.submit();
+  }
+}
+
 function toggleFieldset(legend) {
   const fieldset = legend.parentNode;
   // For logo settings, we need to handle multiple content sections
